@@ -8,42 +8,40 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 	Plug 'tpope/vim-surround'
 	Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-    Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+    Plug 'prettier/vim-prettier', {'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']}
 	Plug 'scrooloose/nerdcommenter'
-    Plug 'epilande/vim-es2015-snippets'
-    Plug 'epilande/vim-react-snippets'
     Plug 'SirVer/ultisnips'
-    Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'css', 'json', 'graphql'] }
-    Plug 'mxw/vim-jsx'
 	Plug 'junegunn/goyo.vim'
 	Plug 'PotatoesMaster/i3-vim-syntax'
 	Plug 'jreybert/vimagit'
-    Plug 'pangloss/vim-javascript'
-    Plug 'crusoexia/vim-javascript-lib'
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'airblade/vim-gitgutter'
     Plug 'jiangmiao/auto-pairs'
 	Plug 'LukeSmithxyz/vimling'
 	Plug 'vimwiki/vimwiki'
-    Plug 'vim-airline/vim-airline-themes'
     Plug 'bling/vim-airline'
-	Plug 'tpope/vim-commentary'
-	Plug 'vifm/vifm.vim'
 	Plug 'kovetskiy/sxhkd-vim'
 	Plug 'wikitopian/hardmode'
-	Plug 'Shougo/deoplete.nvim'
+	Plug 'Shougo/deoplete.nvim', { 'do': 'UpdateRemotePlugins' }
 	Plug 'Shougo/deoplete-clangx'
 	Plug 'roxma/nvim-yarp'
 	Plug 'roxma/vim-hug-neovim-rpc'
 	Plug 'godlygeek/tabular'
 	Plug 'neomake/neomake'
+""" Languages specific plugs
 	Plug 'elixir-editors/vim-elixir'
+    Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 	Plug 'pangloss/vim-javascript'
+    Plug 'crusoexia/vim-javascript-lib'
+    Plug 'epilande/vim-es2015-snippets'
+    Plug 'epilande/vim-react-snippets'
+    Plug 'mxw/vim-jsx'
 """ Themes
 	Plug 'flazz/vim-colorschemes'
 	Plug 'ayu-theme/ayu-vim'
     Plug 'arcticicestudio/nord-vim'
     Plug 'tomasr/molokai'
+    Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 filetype plugin indent on
