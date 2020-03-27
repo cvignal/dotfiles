@@ -20,12 +20,16 @@ set nohlsearch
 set go=a
 set splitbelow splitright
 set number relativenumber
+set undodir=~/.cache/nvim/undodir
+set undofile
+set clipboard+=unnamed
 
 " Python config
 let g:python3_host_prog='/usr/bin/python3.8'
 let g:python_host_prog='/usr/bin/python2.7'
 
 " Themes
+set termguicolors
 colorscheme gruvbox
 let g:airline_theme='bubblegum'
 hi Normal guibg=NONE ctermbg=NONE
@@ -59,15 +63,7 @@ let g:NERDTreeIndicatorMapCustom = {
 
 " Deoplete config
 let g:deoplete#enable_at_startup=1
-
-" Formatters for prettier
-au FileType javascript setlocal formatprg=prettier
-au FileType javascript.jsx setlocal formatprg=prettier
-au FileType typescript setlocal formatprg=prettier\ --parser\ typescript
-au FileType html setlocal formatprg=js-beautify\ --type\ html
-au FileType scss setlocal formatprg=prettier\ --parser\ css
-au FileType css setlocal formatprg=prettier\ --parser\ css
-nnoremap <F5> mzgggqG`z
+call deoplete#custom#option('ignore_sources', {'_': ['around', 'buffer']})
 
 " Autocmd for various sys files
 autocmd BufWritePost *Xresources,*Xdefaults !xrdb %

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+
+<body>
+</body>
+    <div id="search">
+        <input id="search-field" type="text" name="search-field" onkeypress="return search(event)"/>
+    </div>
+    <div class="container">
+    <div id="clock"></div>
+    <div class="weather-container">
+        <div class="row">
+            <div id="weather-description"class="inline"></div>
+            <div class="inline">-</div>
+            <div id="temp" class="inline"></div>
+        </div>
+    </div>
+    <div class=box>
+        <div class=categories>
+            <p class="cat">Work</p>
+            <p class="cat">Daily</p>
+            <p class="cat">Media</p>
+            <p class="cat">Reddit</p>
+            <p class="cat">Social</p>
+        </div>
+        <div class=items>
+            <p class="lst">
+                <span style="color: var(--color1)">[</span><a href="https://mail.google.com/mail/u/1/" target="_blank">inbox</a><span style="color: var(--color1)">]</span>
+                <span style="color: var(--color3)">[</span><a href="https://hexdocs.pm" target="_blank">hexdocs</a><span style="color: var(--color3)">]</span>
+                <span style="color: var(--color6)">[</span><a href="https://reactjs.org/tutorial/tutorial.html/" target="_blank">react</a><span style="color: var(--color6)">]</span>
+                <span style="color: var(--color5)">[</span><a href="https://webflow.com" target="_blank">webflow</a><span style="color: var(--color5)">]</span>
+            </p>
+            <p class="lst">
+                <span style="color: var(--color2)">[</span><a href="https://mail.google.com/mail/u/0/" target="_blank">inbox</a><span style="color: var(--color2)">]</span>
+                <span style="color: var(--color5)">[</span><a href="https://drive.google.com" target="_blank">drive</a><span style="color: var(--color5)">]</span>
+                <span style="color: var(--color3)">[</span><a href="https://github.com" target="_blank">github</a><span style="color: var(--color3)">]</span>
+            <span style="color: var(--color6)">[</span><a href="https://www.rememberthemilk.com/app/#all" target="_blank">rtm</a><span style="color: var(--color6)">]</span>
+            </p>
+            <p class="lst">
+                <span style="color: var(--color1)">[</span><a href="https://youtube.com" target="_blank">youtube</a><span style="color: var(--color1)">]</span>
+                <span style="color: var(--color2)">[</span><a href="https://zooqle.com" target="_blank">zooqle</a><span style="color: var(--color2)">]</span>
+                <span style="color: var(--color1)">[</span><a href="https://yggtorrent.se" target="_blank">yggtorrent</a><span style="color: var(--color1)">]</span>
+                <span style="color: var(--color4)">[</span><a href="https://twitch.tv" target="_blank">twitch</a><span style="color: var(--color4)">]</span>
+            </p>
+            <p class="lst">
+                <span style="color: var(--color6)">[</span><a href="https://reddit.com/hot" target="_blank">frontpage</a><span style="color: var(--color6)">]</span>
+                <span style="color: var(--color1)">[</span><a href="https://reddit.com/r/competitiveoverwatch" target="_blank">cow</a><span style="color: var(--color1)">]</span>
+                <span style="color: var(--color3)">[</span><a href="https://reddit.com/r/france" target="_blank">france</a><span style="color: var(--color3)">]</span>
+                <span style="color: var(--color4)">[</span><a href="https://reddit.com/r/asoiaf" target="_blank">asoiaf</a><span style="color: var(--color4)">]</span>
+                <span style="color: var(--color2)">[</span><a href="https://reddit.com/r/unixporn" target="_blank">unix</a><span style="color: var(--color2)">]</span>
+                <span style="color: var(--color12)">[</span><a href="https://reddit.com/r/soccer" target="_blank">soccer</a><span style="color: var(--color12)">]</span>
+            </p>
+            <p class="lst">
+                <span style="color: var(--color2)">[</span><a href="https://facebook.com" target="_blank">facebook</a><span style="color: var(--color2)">]</span>
+                <span style="color: var(--color10)">[</span><a href="https://twitter.com" target="_blank">twitter</a><span style="color: var(--color10)">]</span>
+            </p>
+        </div>
+    </div>
+    </div>
+    <script>
+        // Search on enter key event
+        function search(e) {
+            if (e.keyCode == 13) {
+                var val = document.getElementById("search-field").value;
+                window.open("https://google.com/search?q=" + val);
+            }
+        }
+        // Get current time and format
+        function getTime() {
+            let date = new Date(),
+                min = date.getMinutes(),
+                sec = date.getSeconds(),
+                hour = date.getHours();
+
+            return "" +
+                (hour < 10 ? ("0" + hour) : hour) + ":" +
+                (min < 10 ? ("0" + min) : min) + ":" +
+                (sec < 10 ? ("0" + sec) : sec);
+        }
+
+        window.onload = () => {
+            let xhr = new XMLHttpRequest();
+            // Request to open weather map
+            xhr.open('GET', 'http://api.openweathermap.org/data/2.5/weather?id=6455259&units=metric&appid=e5b292ae2f9dae5f29e11499c2d82ece');
+            xhr.onload = () => {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        let json = JSON.parse(xhr.responseText);
+                        console.log(json);
+                        document.getElementById("temp").innerHTML = json.main.temp.toFixed(0) + " °C";
+                        document.getElementById("weather-description").innerHTML = json.weather[0].description;
+                    } else {
+                        console.log('error msg: ' + xhr.status);
+                    }
+                }
+            }
+            xhr.send();
+            // Set up the clock
+            document.getElementById("clock").innerHTML = getTime();
+            // Set clock interval to tick clock
+            setInterval( () => {
+                document.getElementById("clock").innerHTML = getTime();
+            },100);
+        }
+
+        document.addEventListener("keydown", event => {
+            if (event.keyCode == 32) {          // Spacebar code to open search
+                document.getElementById('search').style.display = 'flex';
+                document.getElementById('search-field').focus();
+            } else if (event.keyCode == 27) {   // Esc to close search
+                document.getElementById('search-field').value = '';
+                document.getElementById('search-field').blur();
+                document.getElementById('search').style.display = 'none';
+            }
+        });
+    </script>
+</html>

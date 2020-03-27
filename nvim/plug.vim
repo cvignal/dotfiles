@@ -6,6 +6,7 @@ if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
+""" Basic plugs
 	Plug 'tpope/vim-surround'
 	Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
     Plug 'prettier/vim-prettier', {'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']}
@@ -23,7 +24,6 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'kovetskiy/sxhkd-vim'
 	Plug 'wikitopian/hardmode'
 	Plug 'Shougo/deoplete.nvim', { 'do': 'UpdateRemotePlugins' }
-	Plug 'Shougo/deoplete-clangx'
 	Plug 'roxma/nvim-yarp'
 	Plug 'roxma/vim-hug-neovim-rpc'
 	Plug 'godlygeek/tabular'
@@ -36,6 +36,13 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'epilande/vim-es2015-snippets'
     Plug 'epilande/vim-react-snippets'
     Plug 'mxw/vim-jsx'
+    Plug 'slashmili/alchemist.vim'
+	Plug 'Shougo/deoplete-clangx'
+    Plug 'wokalski/autocomplete-flow'
+    Plug 'Shougo/neosnippet'
+    Plug 'Shougo/neosnippet-snippets'
+    Plug 'Shougo/neco-syntax'
+    Plug 'deoplete-plugins/deoplete-jedi'
 """ Themes
 	Plug 'flazz/vim-colorschemes'
 	Plug 'ayu-theme/ayu-vim'
