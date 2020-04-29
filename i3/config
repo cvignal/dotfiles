@@ -1,5 +1,4 @@
 # vim: filetype=i3
-# File originally by Luke Smith <https://lukesmith.xyz>
 
 # This config file will use environmental variables such as $BROWSER and $TERMINAL.
 # You can set these variables in ~/.profile or ~/.bash_profile if you have it as below:
@@ -8,30 +7,51 @@
 # export TERMINAL="st"
 
 # #---Basic Definitions---# #
-for_window [class="^.*"] border pixel 2
-gaps inner 15
-gaps outer 15
+for_window [class="^.*"] border pixel 1
+gaps inner 10
+gaps outer 10
+smart_gaps  on
+hide_edge_borders smart_no_gaps
 set $term --no-startup-id $TERMINAL
 set $mod Mod4
 
-set $bg #282828
-set $red #cc241d
-set $green #98971a
-set $yellow #d79921
-set $blue #458588
-set $purple #b16286
-set $aqua #689d68
-set $gray #a89984
-set $darkgray #1d2021
+#set $bg #282828
+#set $red #cc241d
+#set $green #98971a
+#set $yellow #d79921
+#set $blue #458588
+#set $purple #b16286
+#set $aqua #689d68
+#set $gray #a89984
+#set $darkgray #1d2021
+
+set_from_resource $black        color0  #282828
+set_from_resource $darkgray     color8  #1d2021
+set_from_resource $darkred      color1  #000000
+set_from_resource $red          color9  #000000
+set_from_resource $darkgreen    color2  #000000
+set_from_resource $green        color10 #000000
+set_from_resource $darkyellow   color3  #000000
+set_from_resource $yellow       color11 #000000
+set_from_resource $darkblue     color4  #000000
+set_from_resource $blue         color12 #000000
+set_from_resource $darkmagenta  color5  #000000
+set_from_resource $magenta      color13 #000000
+set_from_resource $darkcyan     color6  #000000
+set_from_resource $cyan         color14 #000000
+set_from_resource $darkwhite    color7  #000000
+set_from_resource $white        color15 #000000
+set $transparent #00000000
+set $bg $black
 
 #start of window title bars & borders section
 
 # green gruvbox
-# class                 border|backgr|text|indicator|child_border
-#client.focused          $green $green $darkgray $purple $darkgray
-#client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
-#client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
-#client.urgent           $red $red $white $red $red
+# class                 border      backgr      text        indicator   child_border
+#client.focused          $darkblue   $darkgreen  $darkgray   $darkcyan   $darkgreen
+#client.focused_inactive $darkgreen  $darkgreen  $yellow     $darkblue   $darkgray
+#client.unfocused        $darkgray   $darkgray   $yellow     $darkblue   $darkgray
+#client.urgent           $red        $red        $white      $red        $red
 
 # blue gruvbox
 # class                 border|backgr|text|indicator|child_border
@@ -39,6 +59,14 @@ set $darkgray #1d2021
 #client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
 #client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
 #client.urgent           $red $red $white $red $red
+
+# class                 border  backgr. text    indicator child_border
+#client.focused          #ff2740	#333333	$eeeeee	#666666	  #ff2740
+#client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+#client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+#client.urgent           #2f343a #900000 #ffffff #900000   #900000
+#client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+#client.background       #333333
 
 #end of window title bars & borders section
 
@@ -233,6 +261,5 @@ bindsym $mod+Shift+Up		move up
 bindsym $mod+Shift+Right 	move right
 
 exec --no-startup-id ~/.config/polybar/launch.sh
-exec --no-startup-id redshift -l 48:2
-
 exec "setxkbmap -option 'grp:alt_shift_toggle' -layout us,fr"
+exec --no-startup-id ~/.local/bin/i3cmds/restore_redshift

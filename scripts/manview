@@ -1,0 +1,3 @@
+#!/bin/sh
+
+man -Tpdf $(man -k . | awk '/^[[:lower:]]/ {print $1}' | uniq | rofi -dmenu -lines 10) | zathura -

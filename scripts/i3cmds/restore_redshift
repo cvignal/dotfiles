@@ -1,0 +1,8 @@
+#!/bin/bash
+
+export REDSHIFT_STATUS=on
+export REDSHIFT_TEMP=3600
+
+if [ "$REDSHIFT_STATUS" = "on" ]; then
+	redshift -P -O "$REDSHIFT_TEMP"
+fi
