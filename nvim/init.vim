@@ -26,7 +26,7 @@ set backspace=indent,eol,start
 set hidden
 
 "" Searching
-set hlsearch
+set nohlsearch
 set incsearch
 set ignorecase
 set smartcase
@@ -84,7 +84,8 @@ hi Normal guibg=NONE ctermbg=NONE
 " vim-airline
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
 let g:airline_theme='bubblegum'
@@ -130,11 +131,17 @@ nnoremap <silent> <F3> :NERDTreeToggle<CR>
 "let g:ctrlp_working_path_mode = 'r'
 "let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
-" Remap for splits
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+"" Switching windows
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+noremap <C-h> <C-w>h
+
+"" Buffer nav
+noremap <leader>z :bp<CR>
+noremap <leader>q :bp<CR>
+noremap <leader>x :bn<CR>
+noremap <leader>w :bn<CR>
 
 " NerdTree and plugin config
 map <leader>n :NERDTreeToggle<CR>
@@ -160,6 +167,7 @@ autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePost ~/.config/bmdirs,~/.config/bmfiles !shortcuts
 autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
+autocmd BufRead,BufNewFile *.md set filetype=markdown
 
 " Tags config
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
