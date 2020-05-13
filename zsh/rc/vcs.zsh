@@ -1,75 +1,61 @@
 # -*- sh -*-
 
-# Incorporate git information into prompt
+# Incorporate git information into right prompt
 
-[[ $USERNAME != "root" ]] && [[ $ZSH_NAME != "zsh-static" ]] && {
+autoload -U colors && colors
 
-    # Async helpers
-    _vbe_vcs_async_start() {
-        async_start_worker vcs_info
-        async_register_callback vcs_info _vbe_vcs_info_done
-    }
-    _vbe_vcs_info() {
-        cd -q $1
-        vcs_info
-        print ${vcs_info_msg_0_}
-    }
-    _vbe_vcs_info_done() {
-        local job=$1
-        local return_code=$2
-        local stdout=$3
-        local more=$6
-        if [[ $job == '[async]' ]]; then
-            if [[ $return_code -eq 2 ]]; then
-                # Need to restart the worker. Stolen from
-                # https://github.com/mengelbrecht/slimline/blob/master/lib/async.zsh
-                _vbe_vcs_async_start
-                return
-            fi
-        fi
-        vcs_info_msg_0_=$stdout
-        [[ $more == 1 ]] || zle reset-prompt
-    }
+git_info() {
 
-    autoload -Uz vcs_info
+  # Exit if not inside a Git repository
+  ! git rev-parse --is-inside-work-tree > /dev/null 2>&1 && return
 
-    zstyle ':vcs_info:*' enable git
-    () {
-        local formats="${PRCH[branch]} %b%c%u"
-        local actionformats="${formats}%{${fg[default]}%} ${PRCH[sep]} %{${fg[green]}%}%a"
-        zstyle    ':vcs_info:*:*' formats           $formats
-        zstyle    ':vcs_info:*:*' actionformats     $actionformats
-        zstyle    ':vcs_info:*:*' stagedstr         "%{${fg[green]}%}${PRCH[circle]}"
-        zstyle    ':vcs_info:*:*' unstagedstr       "%{${fg[yellow]}%}${PRCH[circle]}"
-	    zstyle    ':vcs_info:*:*' check-for-changes true
+  # Git branch/tag, or name-rev if on detached head
+  local GIT_LOCATION=${$(git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD)#(refs/heads/|tags/)}
 
-        zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+  local AHEAD="%{$fg[red]%}⇡NUM%{$reset_color%}"
+  local BEHIND="%{$fg[cyan]%}⇣NUM%{$reset_color%}"
+  local MERGING="%{$fg[magenta]%}⚡︎%{$reset_color%}"
+  local UNTRACKED="%{$fg[red]%}●%{$reset_color%}"
+  local MODIFIED="%{$fg[yellow]%}●%{$reset_color%}"
+  local STAGED="%{$fg[green]%}●%{$reset_color%}"
 
-        +vi-git-untracked(){
-            if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-                git status --porcelain 2> /dev/null | grep -q '??' ; then
-                hook_com[staged]+="%{${fg[black]}%}${PRCH[circle]}"
-            fi
-        }
+  local -a DIVERGENCES
+  local -a FLAGS
 
-    }
+  local NUM_AHEAD="$(git log --oneline @{u}.. 2> /dev/null | wc -l | tr -d ' ')"
+  if [ "$NUM_AHEAD" -gt 0 ]; then
+    DIVERGENCES+=( "${AHEAD//NUM/$NUM_AHEAD}" )
+  fi
 
-    # Asynchronous VCS status
-    source $ZDOTDIR/thirdparty/async.zsh
-    async_init
-    _vbe_vcs_async_start
-    add-zsh-hook precmd (){
-        async_job vcs_info _vbe_vcs_info $PWD
-    }
-    add-zsh-hook chpwd (){
-        vcs_info_msg_0_=
-    }
+  local NUM_BEHIND="$(git log --oneline ..@{u} 2> /dev/null | wc -l | tr -d ' ')"
+  if [ "$NUM_BEHIND" -gt 0 ]; then
+    DIVERGENCES+=( "${BEHIND//NUM/$NUM_BEHIND}" )
+  fi
 
-    # Add VCS information to the prompt
-    # _vbe_add_prompt_vcs () {
-	# _vbe_prompt_segment cyan default ${vcs_info_msg_0_}
-    # }
-    _vbe_add_prompt_vcs() {
-        RPROMPT="${vcs_info_msg_0_}"
-    }
+  local GIT_DIR="$(git rev-parse --git-dir 2> /dev/null)"
+  if [ -n $GIT_DIR ] && test -r $GIT_DIR/MERGE_HEAD; then
+    FLAGS+=( "$MERGING" )
+  fi
+
+  if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
+    FLAGS+=( "$UNTRACKED" )
+  fi
+
+  if ! git diff --quiet 2> /dev/null; then
+    FLAGS+=( "$MODIFIED" )
+  fi
+
+  if ! git diff --cached --quiet 2> /dev/null; then
+    FLAGS+=( "$STAGED" )
+  fi
+
+  local -a GIT_INFO
+  GIT_INFO+=( "%F{240}±%{$reset_color%}" )
+  [[ ${#DIVERGENCES[@]} -ne 0 ]] && GIT_INFO+=( "${(j::)DIVERGENCES}" )
+  [[ ${#FLAGS[@]} -ne 0 ]] && GIT_INFO+=( "${(j::)FLAGS}" )
+  GIT_INFO+=( "%F{240}$GIT_LOCATION%{$reset_color%}" )
+  echo "${(j: :)GIT_INFO}"
+
 }
+
+RPROMPT="\$(git_info)%{$reset_color%}"
