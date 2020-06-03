@@ -7,7 +7,7 @@
 # export TERMINAL="st"
 
 # #---Basic Definitions---# #
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 gaps inner 10
 gaps outer 10
 smart_gaps  on
@@ -245,6 +245,7 @@ no_focus [title="mpvfloat"]
 
 # #---Function Buttons---# #
 bindsym $mod+F2		restart
+bindsym $mod+F12	exec $term -e nmtui
 
 # #---Arrow Keys---# #
 bindsym $mod+Left		focus left
@@ -260,6 +261,16 @@ bindsym $mod+Shift+Down		move down
 bindsym $mod+Shift+Up		move up
 bindsym $mod+Shift+Right 	move right
 
+# #---Media Keys---# #
+# Volume keys
+bindsym $mod+plus		exec --no-startup-id pulsemixer --change-volume +5
+bindsym $mod+Shift+plus		exec --no-startup-id pulsemixer --change-volume +15
+bindsym $mod+minus 		exec --no-startup-id pulsemixer --change-volume -5
+bindsym $mod+Shift+minus	exec --no-startup-id pulsemixer --change-volume -15
+
+exec --no-startup-id ~/.local/bin/i3cmds/screen_layout
+
 exec --no-startup-id ~/.config/polybar/launch.sh
+exec --no-startup-id ~/.local/bin/setbg
 exec "setxkbmap -option 'grp:alt_shift_toggle' -layout us,fr"
 exec --no-startup-id ~/.local/bin/i3cmds/restore_redshift
