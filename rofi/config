@@ -7,11 +7,11 @@ rofi.matching: fuzzy
 rofi.lines: 8
 rofi.columns: 1
 rofi.bw: 0
-rofi.padding: 900
+rofi.padding: 250%
 rofi.hide-scrollbar: true
 rofi.width: 100
 rofi.line-margin: 14
-rofi.fullscreen: false
+rofi.fullscreen: true
 rofi.fake-transparency: false
 rofi.color-window: argb:df32302f, #ebdbb2, argb:00000000
 rofi.color-normal: argb:00000000, #ebdbb2, argb:00000000, argb:00000000, #d79921
