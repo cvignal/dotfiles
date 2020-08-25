@@ -14,9 +14,9 @@ set fileencodings=utf-8
 let mapleader=","
 
 "" Tabs. May be overridden by autocmd rules
-set tabstop=4
+set tabstop=2
 set softtabstop=0
-set shiftwidth=4
+set shiftwidth=2
 set expandtab
 
 "" Fix backspace indent
@@ -172,9 +172,24 @@ autocmd BufRead,BufNewFile *.md set filetype=markdown
 " Tags config
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 
-"" Vmap for maintain Visual Mode after shifting > and <
+" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
 vmap > >gv
+
+" Autocmd to remember cursor position in a file
+autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+" mapping to copy to clipboard
+noremap <Leader>y "*y
+noremap <Leader>p "*p
+noremap <Leader>Y "+y
+noremap <Leader>P "+p
+
+" Fugitive Conflict Resolution
+nnoremap <leader>gd :Gvdiff!<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
+
 
 "*****************************************************************************
 "" Convenience variables
