@@ -6,8 +6,11 @@
   icon-font:                            "Hurmit Nerd Font Mono 60";
   icon-font-small:                      "Hurmit Nerd Font Mono 24";
   inputbar-margin:                      4px 4px;
+  inputbar-2-margin:                    0px 0px;
   prompt-padding:                       16px 20px;
+  prompt-2-padding:                     2px 8px 0px 8px;
   entry-padding:                        18px 16px 16px 0px;
+  entry-2-padding:                      4px 8px 4px 8px;
   /* confirmmenu */
   confirm-window-height:                170px;
   confirm-window-width:                 350px;

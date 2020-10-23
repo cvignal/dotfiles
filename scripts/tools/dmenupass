@@ -1,2 +1,7 @@
 #!/usr/bin/env sh
-dmenu -fn Monospace-18 -sb "#d79921" -sf "#1d2021" -nf "#000000" -nb "#000000" -p "$1" <&- && echo
+rofi -dmenu \
+	-password \
+  -i \
+	-no-fixed-num-lines \
+  -theme themes/input.rasi \
+	-p "$(printf "$1" | sed s/://)"
