@@ -1,0 +1,30 @@
+@import "shared/settings.rasi"
+
+* {
+  background-color: @background;
+  text-color: @foreground;
+  font: @text-font;
+}
+
+#window {
+  width: 25%;
+  height: 32px;
+  children: [ inputbar ];
+  border-radius: 5px;
+}
+
+#inputbar {
+  children: [ prompt, entry ];
+  margin: @inputbar-2-margin;
+}
+
+#prompt {
+  padding: @prompt-2-padding;
+  background-color: @accent;
+  text-color: @background;
+}
+
+#entry {
+  text-color: @accent;
+  padding: @entry-2-padding;
+}
