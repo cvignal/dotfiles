@@ -1,0 +1,11 @@
+configuration {
+  show-icons:       true;
+  icon-theme:       "Paper";
+  modi:             "drun";
+  display-drun:     "apps";
+  hide-scrollbar:   true;
+  cycle:            true;
+  disable-history:  false;
+  columns:          2;
+  matching:         "fuzzy";
+}

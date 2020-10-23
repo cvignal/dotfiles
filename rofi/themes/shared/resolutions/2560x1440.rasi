@@ -1,0 +1,54 @@
+* {
+  /* General */
+  confirm-text-font:                    "SauceCodePro Nerd Font Medium 14";
+  text-font:                            "SauceCodePro Nerd Font Medium 14";
+  text-font-mono:                       "RobotoMono Nerd Font Regular 14";
+  icon-font:                            "Hurmit Nerd Font Mono 60";
+  icon-font-small:                      "Hurmit Nerd Font Mono 24";
+  inputbar-margin:                      4px 4px;
+  prompt-padding:                       16px 20px;
+  entry-padding:                        18px 16px 16px 0px;
+  /* confirmmenu */
+  confirm-window-height:                170px;
+  confirm-window-width:                 350px;
+  confirm-window-border:                1px;
+  confirm-prompt-padding:               10px 20px;
+  confirm-prompt-margin:                8px 100px;
+  confirm-listview-padding:             10px 25px 0px 25px;
+  /* Values bellow are 'no-padding' ones for a size 18 (@confirm-text-font) font, played around using this character: ■
+   * We then add add 30 actual padding around the text.
+   *                                    -4px  -1px  -6px  -28px */
+  confirm-element-padding:              26px 15px;
+  /* list menus: appsmenu, networkmenu and nmvpnmenu */
+  list-element-padding:                 13px;
+  list-element-margin:                  @inputbar-margin;
+  list-element-border:                  0px 0px 0px 8px;
+  list-8-window-padding:                390px 500px;
+  /* option menus: i3layoutmenu, mpdmenu, powermenu and scrotmenu */
+  /**
+   * Values bellow are 'no-padding' ones for a size 60 (@icon-font) font, played around using this character: ■
+   * We then add add 100 actual padding around the icons.
+   *                                    -12px 0px   -19px -96px */
+  option-element-padding:               55px 0px 55px 97px;
+  option-3-window-padding:              293px 271px;
+  option-3-listview-spacing:            140px;
+  option-5-window-padding:              40% 10%;
+  option-5-listview-spacing:            20px;
+  option-6-listview-spacing:            50px;
+  /* appsmenu */
+  apps-textbox-prompt-colon-padding:    16px;
+  /* mpdmenu */
+  mpd-window-padding:                   379px 111px;
+  mpd-inputbar-margin:                  10px 0px;
+  mpd-prompt-padding:                   14px 20px 10px 20px;
+  mpd-prompt-margin:                    0px 0px 0px -2px;
+  mpd-element-border:                   12px;
+  /* Every @option-element-padding minus @mpd-element-border */
+  mpd-element-padding:                  76px 88px 69px -16px;
+  /* networkmenu */
+  network-textbox-prompt-colon-padding: 14px 10px 10px 10px;
+  /* nmvpnmenu */
+  nmvpn-textbox-prompt-colon-padding:   @network-textbox-prompt-colon-padding;
+  /* i3keybindings */
+  i3keybindings-textbox-prompt-colon-padding: @network-textbox-prompt-colon-padding;
+}
