@@ -1,0 +1,63 @@
+;   __
+; .  _)
+; | __)
+;
+
+[module/i3]
+type = internal/i3
+
+index-sort = true
+; Don't wrap around when scrolling through workspaces
+wrapping-scroll = false
+; Only show workspaces on the same output as the bar
+pin-workspaces = true
+; Split the workspace label on ':' to get its name
+strip-wsnumbers = true
+
+ws-icon-default = 缾
+ws-icon-0 = 1:一;
+ws-icon-1 = 2:二;ﲵ
+ws-icon-2 = 3:三;
+ws-icon-3 = 4:四;
+ws-icon-4 = 5:五;
+ws-icon-5 = 6:六;
+ws-icon-6 = 10:〇;ﱘ
+
+format = <label-state><label-mode>
+format-padding = 0
+
+; Active workspace on focused monitor
+label-focused = %{T2}%icon%%{T-}  %name%
+label-focused-background = ${color.selected-bg}
+label-focused-underline = ${xcolor.darkblue}
+label-focused-padding = ${layout.module-padding}
+
+; Active workspace on unfocused monitor
+label-visible = ${self.label-focused}
+label-visible-background = ${color.module-bg}
+label-visible-underline = ${xcolor.darkred}
+label-visible-padding = ${layout.module-padding}
+
+; Inactive workspace on any monitor
+label-unfocused = ${self.label-focused}
+label-unfocused-background = ${color.module-bg}
+label-unfocused-padding = ${layout.module-padding}
+
+; Workspace with urgency hint set
+label-urgent = ${self.label-focused}
+label-urgent-background = ${color.module-bg}
+label-urgent-underline = ${color.warn-fg}
+label-urgent-padding = ${layout.module-padding}
+
+label-mode-background = ${color.module-bg}
+label-mode-padding = ${layout.module-padding}
+
+
+[module/xwindow]
+type = internal/xwindow
+inherit = common-prefix-format
+
+label = %title:0:35:...%
+
+; vim:filetype=dosini
+; kak:filetype=ini

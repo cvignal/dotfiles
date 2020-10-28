@@ -1,0 +1,122 @@
+;
+; |__| _  _ _|    _  _ _
+; |  |(_|| (_|\|/(_|| (/_
+;
+
+[module/cpu]
+type = internal/cpu
+inherit = common-prefix-format
+
+format = <label> <bar-load>
+format-prefix = 漣
+
+label = %percentage:2% ％
+
+; Bar
+bar-load-format = ${layout.bar-format}
+bar-load-gradient = true
+bar-load-foreground-0 = ${color.bar-fg}
+bar-load-foreground-1 = ${color.bar-fg}
+bar-load-foreground-2 = ${color.bar-fg}
+bar-load-foreground-3 = ${color.warn-fg}
+
+bar-load-width = 5
+bar-load-fill = ${layout.bar-fill-icon}
+bar-load-indicator =
+bar-load-empty = ${layout.bar-fill-icon}
+
+
+[module/memory]
+type = internal/memory
+inherit = common-prefix-format
+
+format-prefix = ﬘
+label = %gb_used%
+
+
+[module/temp]
+type = internal/temperature
+inherit = common-prefix-format
+interval = 2
+
+units = false
+warn-temperature = 80
+
+; Normal
+format-prefix = 﨎
+label = %temperature-c% °C
+
+; Warning
+format-warn-underline = ${color.warn-fg}
+
+format-warn-prefix = 﨏
+format-warn-prefix-font = ${layout.icon-font}
+format-warn-prefix-foreground = ${color.icon-fg}
+format-warn-prefix-padding-right = ${layout.icon-padding}
+
+label-warn = ${self.label}
+label-warn-foreground = ${color.warn-fg}
+
+
+[module/battery]
+type = internal/battery
+
+battery = BAT0
+adapter = ACAD
+full-at = 96
+
+; Discharging
+format-discharging = <ramp-capacity><label-discharging>
+
+ramp-capacity-font = ${layout.icon-font}
+ramp-capacity-foreground = ${color.icon-fg}
+ramp-capacity-padding-right = ${layout.icon-padding}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
+ramp-capacity-10 = 
+
+label-discharging = %percentage% ％
+
+; Charging
+format-charging = <animation-charging><label-charging>
+
+animation-charging-font = ${layout.icon-font}
+animation-charging-foreground = ${color.icon-fg}
+animation-charging-padding-right = ${layout.icon-padding}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-5 = 
+
+label-charging = ${self.label-discharging}
+
+; Full
+format-full-prefix = 
+format-full-prefix-font = ${layout.icon-font}
+format-full-prefix-foreground = ${xcolor.darkgreen}
+format-full-prefix-padding-right = ${layout.icon-padding}
+
+label-full = ${self.label-discharging}
+
+[module/keyboard]
+type = internal/xkeyboard
+inherit = common-prefix-format
+format = <label-layout>
+format-prefix = ⌨
+format-prefix-font = 6
+label-layout = %layout%
+
+; vim:filetype=dosini
+; kak:filetype=ini

@@ -1,0 +1,39 @@
+;
+; |\/| _  _|. _
+; |  |(/_(_||(_|
+;
+
+[module/volume]
+type = internal/pulseaudio
+
+; Not muted
+format-volume = <ramp-volume><bar-volume>
+
+ramp-volume-font = ${layout.icon-font}
+ramp-volume-foreground = ${color.icon-fg}
+ramp-volume-padding-right = ${layout.icon-padding}
+
+ramp-volume-0 = 墳
+
+; Bar
+bar-volume-format = ${layout.bar-format}
+bar-volume-foreground-0 = ${color.bar-fg}
+
+bar-volume-width = 6
+bar-volume-fill = ${layout.bar-fill-icon}
+bar-volume-indicator =
+bar-volume-empty = ${layout.bar-fill-icon}
+
+; Muted
+format-muted-foreground = ${xcolor.darkred}
+
+format-muted-prefix = 婢
+format-muted-prefix-font = ${layout.icon-font}
+format-muted-prefix-foreground = ${color.icon-fg}
+format-muted-prefix-padding-right = ${layout.icon-padding}
+
+label-muted = ミュート
+
+; vim:filetype=dosini
+; kak:filetype=ini
+

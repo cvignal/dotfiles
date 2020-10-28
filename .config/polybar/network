@@ -1,0 +1,55 @@
+;
+; |\ | _ _|_    _  _|
+; | \|(/_ | \|/(_)| |<
+;
+
+[module/network]
+type = internal/network
+interval = 2
+
+; Connected
+format-connected-prefix-font = ${layout.icon-font}
+format-connected-prefix-foreground = ${color.icon-fg}
+format-connected-prefix-padding-right = ${layout.icon-padding}
+
+; Disconnected
+format-disconnected-foreground = ${xcolor.darkblue}
+
+format-disconnected-prefix-font = ${layout.icon-font}
+format-disconnected-prefix-foreground = ${color.icon-fg}
+format-disconnected-prefix-padding-right = ${layout.icon-padding}
+
+
+[module/wifi]
+inherit = module/network
+interface = ${env:IF_WIFI}
+
+format-connected-prefix = 直
+label-connected = %essid%
+
+format-disconnected-prefix = 睊
+label-disconnected = なし
+
+
+[module/eth]
+inherit = module/network
+interface = ${env:IF_ETH}
+
+format-connected-prefix = 
+label-connected = %local_ip%
+
+format-disconnected =
+
+
+[module/ping]
+type = custom/script
+inherit = common-prefix-format
+
+exec = $HOME/.local/bin/statusbar/measure_ping.py
+tail = true
+click-left = kill -USR1 %pid%
+
+format-prefix = 
+
+; vim:filetype=dosini
+; kak:filetype=ini
