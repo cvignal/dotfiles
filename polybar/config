@@ -1,0 +1,464 @@
+;  ___     _      _
+; | _ \___| |_  _| |__  __ _ _ _
+; |  _/ _ \ | || | '_ \/ _` | '_|
+; |_| \___/_|\_, |_.__/\__,_|_|
+;            |__/
+;
+; Author: Benedikt Vollmerhaus <benedikt@vollmerhaus.org>
+; License: MIT
+
+;
+; \  /_  _ _
+;  \/(_|| _)
+;
+
+[xcolor]
+bg     = ${xrdb:background:#0a0a0a}
+fg     = ${xrdb:foreground:#c8c8c8}
+color1 = ${xrdb:color1:#a54242}
+color2 = ${xrdb:color2:#8c9440}
+color3 = ${xrdb:color3:#de935f}
+color4 = ${xrdb:color4:#5f819d}
+color5 = ${xrdb:color5:#85678f}
+color6 = ${xrdb:color6:#5e8d87}
+color8 = ${xrdb:color8:#373b41}
+
+darkred     = ${xrdb:color1}
+red         = ${xrdb:color9}
+darkgreen   = ${xrdb:color2}
+green       = ${xrdb:color10}
+darkgray    = ${xrdb:color8}
+lightgray   = ${xrdb:color7}
+white       = ${xrdb:color15}
+darkyellow  = ${xrdb:color3}
+yellow      = ${xrdb:color11}
+darkblue    = ${xrdb:color4}
+blue        = ${xrdb:color12}
+darkmagenta = ${xrdb:color5}
+magenta     = ${xrdb:color13}
+darkcyan    = ${xrdb:color6}
+cyan        = ${xrdb:color13}
+
+[color]
+base-bg     = #32302f
+glyph-bg    = #de0a0a0a
+module-bg   = #fa0a0a0a
+selected-bg = #dc1a1a1a
+
+text-fg = ${xcolor.white}
+icon-fg = ${xcolor.yellow}
+bar-fg  = ${xcolor.darkyellow}
+warn-fg = #821717
+
+
+[layout]
+icon-font = 2
+icon-padding = 1
+module-padding = 2
+
+bar-format = %{T4}%fill%%indicator%%{F#dc404040}%empty%%{F-}%{T-}
+bar-fill-icon = ﭳ
+
+
+;  __
+; |__) _  _ _
+; |__)(_|| _)
+;
+
+[bar/base]
+width = 100%
+height = 28
+
+background = ${color.base-bg}
+foreground = ${color.text-fg}
+
+; Size of under-/overlines
+line-size = 1
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+font-0 = M+ 1m:style=Medium:size=10;3
+
+; Material Design Icons
+font-1 = M+ 1m:style=Medium:size=11;3
+; Powerline Glyphs
+font-2 = M+ 1m:style=Medium:size=16;3
+
+; Larger font size for bar fill icons
+font-3 = M+ 1m:style=Medium:size=12;3
+; Smaller font size for shorter spaces
+font-4 = M+ 1m:style=Medium:size=7;3
+
+
+[bar/top-primary]
+inherit = bar/base
+monitor =
+
+modules-left = volume right-end-top left-end-bottom ping right-end-top
+modules-right = left-end-top wifi eth right-end-bottom left-end-top date right-end-bottom left-end-top
+
+tray-background = ${color.module-bg}
+tray-padding = ${layout.module-padding}
+tray-position = right
+
+
+[bar/top-secondary]
+inherit = bar/top-primary
+monitor = ${env:MONITOR}
+
+modules-left = volume right-end-top left-end-bottom ping right-end-top
+modules-right = left-end-top date
+tray-position = none
+
+
+[bar/bottom-primary]
+inherit = bar/base
+monitor =
+bottom = true
+
+modules-left = i3 right-end-bottom left-end-top xwindow right-end-bottom
+modules-right = left-end-bottom cpu memory right-end-top left-end-bottom temp battery
+
+
+[bar/bottom-secondary]
+inherit = bar/bottom-primary
+monitor = ${env:MONITOR}
+
+
+[settings]
+screenchange-reload = true
+
+; Global format definitions
+format-background = ${color.module-bg}
+format-padding = ${layout.module-padding}
+
+
+; A shared prefix format for all modules that support it.
+;
+; Some modules use specific names for their format definitions,
+; such as format-NAME-prefix-<property>, which unfortunately do
+; not fall back to these unnamed ones and require duplication.
+[common-prefix-format]
+format-prefix-font = ${layout.icon-font}
+format-prefix-foreground = ${color.icon-fg}
+format-prefix-padding-right = ${layout.icon-padding}
+
+
+;  __
+; / _ |    _ |_  _
+; \__)|_\/|_)| |_)
+;       / |
+;
+; used as decorative dividers between modules.
+
+[module/glyph]
+type = custom/text
+content-font = 3
+content-padding = 0
+content-background = ${color.base-bg}
+content-foreground = ${color.glyph-bg}
+
+[module/left-end-top]
+inherit = module/glyph
+content = 
+
+[module/right-end-top]
+inherit = module/glyph
+content = 
+
+[module/left-end-bottom]
+inherit = module/glyph
+content = 
+
+[module/right-end-bottom]
+inherit = module/glyph
+content = 
+
+
+;   __
+; .  _)
+; | __)
+;
+
+[module/i3]
+type = internal/i3
+
+index-sort = true
+; Don't wrap around when scrolling through workspaces
+wrapping-scroll = false
+; Only show workspaces on the same output as the bar
+pin-workspaces = true
+; Split the workspace label on ':' to get its name
+strip-wsnumbers = true
+
+ws-icon-default = 缾
+ws-icon-0 = 1:一;
+ws-icon-1 = 2:二;ﲵ
+ws-icon-2 = 3:三;
+ws-icon-3 = 4:四;
+ws-icon-4 = 5:五;
+ws-icon-5 = 6:六;
+ws-icon-6 = 10:〇;ﱘ
+
+format = <label-state><label-mode>
+format-padding = 0
+
+; Active workspace on focused monitor
+label-focused = %{T2}%icon%%{T-}  %name%
+label-focused-background = ${color.selected-bg}
+label-focused-underline = ${xcolor.darkblue}
+label-focused-padding = ${layout.module-padding}
+
+; Active workspace on unfocused monitor
+label-visible = ${self.label-focused}
+label-visible-background = ${color.module-bg}
+label-visible-underline = ${xcolor.darkred}
+label-visible-padding = ${layout.module-padding}
+
+; Inactive workspace on any monitor
+label-unfocused = ${self.label-focused}
+label-unfocused-background = ${color.module-bg}
+label-unfocused-padding = ${layout.module-padding}
+
+; Workspace with urgency hint set
+label-urgent = ${self.label-focused}
+label-urgent-background = ${color.module-bg}
+label-urgent-underline = ${color.warn-fg}
+label-urgent-padding = ${layout.module-padding}
+
+label-mode-background = ${color.module-bg}
+label-mode-padding = ${layout.module-padding}
+
+
+[module/xwindow]
+type = internal/xwindow
+inherit = common-prefix-format
+
+label = %title:0:35:...%
+
+
+; ___
+;  | . _ _  _
+;  | || | |(/_
+;
+
+[module/date]
+type = internal/date
+inherit = common-prefix-format
+
+label = %date%%{T5} %{T-}%{F#404040}%{F-}%{T5} %{T-}%time%
+
+; Date format is "MM 月 DD 日", smaller font size for spaces
+date = %d/%m%
+date-alt = %d/%m/%y
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+
+;
+; |\/| _  _|. _
+; |  |(/_(_||(_|
+;
+
+[module/volume]
+type = internal/pulseaudio
+
+; Not muted
+format-volume = <ramp-volume><bar-volume>
+
+ramp-volume-font = ${layout.icon-font}
+ramp-volume-foreground = ${color.icon-fg}
+ramp-volume-padding-right = ${layout.icon-padding}
+
+ramp-volume-0 = 墳
+
+; Bar
+bar-volume-format = ${layout.bar-format}
+bar-volume-foreground-0 = ${color.bar-fg}
+
+bar-volume-width = 6
+bar-volume-fill = ${layout.bar-fill-icon}
+bar-volume-indicator =
+bar-volume-empty = ${layout.bar-fill-icon}
+
+; Muted
+format-muted-foreground = ${xcolor.darkred}
+
+format-muted-prefix = 婢
+format-muted-prefix-font = ${layout.icon-font}
+format-muted-prefix-foreground = ${color.icon-fg}
+format-muted-prefix-padding-right = ${layout.icon-padding}
+
+label-muted = ミュート
+
+
+;
+; |__| _  _ _|    _  _ _
+; |  |(_|| (_|\|/(_|| (/_
+;
+
+[module/cpu]
+type = internal/cpu
+inherit = common-prefix-format
+
+format = <label> <bar-load>
+format-prefix = 漣
+
+label = %percentage:2% ％
+
+; Bar
+bar-load-format = ${layout.bar-format}
+bar-load-gradient = true
+bar-load-foreground-0 = ${color.bar-fg}
+bar-load-foreground-1 = ${color.bar-fg}
+bar-load-foreground-2 = ${color.bar-fg}
+bar-load-foreground-3 = ${color.warn-fg}
+
+bar-load-width = 5
+bar-load-fill = ${layout.bar-fill-icon}
+bar-load-indicator =
+bar-load-empty = ${layout.bar-fill-icon}
+
+
+[module/memory]
+type = internal/memory
+inherit = common-prefix-format
+
+format-prefix = ﬘
+label = %gb_used%
+
+
+[module/temp]
+type = internal/temperature
+inherit = common-prefix-format
+interval = 2
+
+units = false
+warn-temperature = 80
+
+; Normal
+format-prefix = 﨎
+label = %temperature-c% °C
+
+; Warning
+format-warn-underline = ${color.warn-fg}
+
+format-warn-prefix = 﨏
+format-warn-prefix-font = ${layout.icon-font}
+format-warn-prefix-foreground = ${color.icon-fg}
+format-warn-prefix-padding-right = ${layout.icon-padding}
+
+label-warn = ${self.label}
+label-warn-foreground = ${color.warn-fg}
+
+
+[module/battery]
+type = internal/battery
+
+battery = BAT0
+adapter = ACAD
+full-at = 96
+
+; Discharging
+format-discharging = <ramp-capacity><label-discharging>
+
+ramp-capacity-font = ${layout.icon-font}
+ramp-capacity-foreground = ${color.icon-fg}
+ramp-capacity-padding-right = ${layout.icon-padding}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
+ramp-capacity-10 = 
+
+label-discharging = %percentage% ％
+
+; Charging
+format-charging = <animation-charging><label-charging>
+
+animation-charging-font = ${layout.icon-font}
+animation-charging-foreground = ${color.icon-fg}
+animation-charging-padding-right = ${layout.icon-padding}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-5 = 
+
+label-charging = ${self.label-discharging}
+
+; Full
+format-full-prefix = 
+format-full-prefix-font = ${layout.icon-font}
+format-full-prefix-foreground = ${xcolor.darkgreen}
+format-full-prefix-padding-right = ${layout.icon-padding}
+
+label-full = ${self.label-discharging}
+
+
+;
+; |\ | _ _|_    _  _|
+; | \|(/_ | \|/(_)| |<
+;
+
+[module/network]
+type = internal/network
+interval = 2
+
+; Connected
+format-connected-prefix-font = ${layout.icon-font}
+format-connected-prefix-foreground = ${color.icon-fg}
+format-connected-prefix-padding-right = ${layout.icon-padding}
+
+; Disconnected
+format-disconnected-foreground = ${xcolor.darkblue}
+
+format-disconnected-prefix-font = ${layout.icon-font}
+format-disconnected-prefix-foreground = ${color.icon-fg}
+format-disconnected-prefix-padding-right = ${layout.icon-padding}
+
+
+[module/wifi]
+inherit = module/network
+interface = ${env:IF_WIFI}
+
+format-connected-prefix = 直
+label-connected = %essid%
+
+format-disconnected-prefix = 睊
+label-disconnected = なし
+
+
+[module/eth]
+inherit = module/network
+interface = ${env:IF_ETH}
+
+format-connected-prefix = 
+label-connected = %local_ip%
+
+format-disconnected =
+
+
+[module/ping]
+type = custom/script
+inherit = common-prefix-format
+
+exec = $HOME/.local/bin/statusbar/measure_ping.py
+tail = true
+click-left = kill -USR1 %pid%
+
+format-prefix = 
+
+; vim:filetype=dosini
+; kak:filetype=ini
