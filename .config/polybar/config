@@ -103,6 +103,7 @@ inherit = bar/base
 monitor =
 
 modules-left = volume right-end-top left-end-bottom ping right-end-top left-end-bottom keyboard right-end-top
+modules-center = left-end-bottom xwindow right-end-bottom
 modules-right = left-end-top wifi eth right-end-bottom left-end-top date right-end-bottom left-end-top
 
 tray-background = ${color.module-bg}
@@ -124,7 +125,7 @@ inherit = bar/base
 monitor =
 bottom = true
 
-modules-left = i3 right-end-bottom left-end-top xwindow right-end-bottom
+modules-left = i3 right-end-bottom
 modules-right = left-end-bottom cpu memory right-end-top left-end-bottom temp battery
 
 
