@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 [ -z "$1" ] && echo "Give either a pdf file or a DOI as an argument." && exit
 
 if [ -f "$1" ]; then

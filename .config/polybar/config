@@ -125,7 +125,7 @@ inherit = bar/base
 monitor =
 bottom = true
 
-modules-left = i3 right-end-bottom
+modules-left = i3 right-end-bottom left-end-top filesystem right-end-bottom
 modules-right = left-end-bottom cpu memory right-end-top left-end-bottom temp battery
 
 

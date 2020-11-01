@@ -1,0 +1,78 @@
+/**
+ * User: qball
+ * Copyright: Dave Davenport
+ */
+@import "shared/settings.rasi"
+
+* {
+  background-color: @background;
+  text-color: @foreground;
+  font: @text-font;
+  highlight: bold;
+}
+
+#window {
+    height:   100%;
+    width: 15em;
+    location: west;
+    anchor:   west;
+    border:  0px 2px 0px 0px;
+    text-color: @background;
+}
+
+#mode-switcher {
+    border: 2px 0px 0px 0px;
+    background-color: @background;
+    padding: 4px;
+}
+#button selected {
+    border-color: @green;
+    text-color: @green;
+}
+#inputbar {
+    background-color: @darkgrey;
+    text-color: @green;
+    padding: 4px;
+    border: 0px 0px 2px 0px;
+}
+#prompt {
+  padding: 5px 5px;
+}
+#entry {
+  padding: 5px 5px;
+}
+#mainbox {
+    expand: true;
+    background-color: @background;
+    spacing: 1em;
+}
+#listview {
+    padding: 0px 3px 0px 5px;
+    dynamic: false;
+    background-color: #00000000;  lines: 0;
+}
+#element selected  normal {
+    background-color: @darkblue;
+}
+#element normal active {
+    text-color: @blue;
+}
+#element normal urgent {
+    text-color: @red;
+}
+#element alternate normal {
+}
+#element alternate active {
+    text-color: @blue;
+}
+#element alternate urgent {
+    text-color: @red;
+}
+#element selected active {
+    background-color: @blue;
+    text-color: @black;
+}
+#element selected urgent {
+    background-color: @red;
+    text-color: @black;
+}
