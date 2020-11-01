@@ -57,7 +57,7 @@ main() {
   launch_bar '' top-primary
   launch_bar '' bottom-primary
 
-  launch_secondary_bars
+  # launch_secondary_bars
 }
 
 main

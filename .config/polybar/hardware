@@ -2,13 +2,37 @@
 ; |__| _  _ _|    _  _ _
 ; |  |(_|| (_|\|/(_|| (/_
 ;
+[module/filesystem]
+type = internal/fs
+inherit = common-prefix-format
+mount-0 = /home
+mount-1 = /
+spacing = 1
+format-mounted = <label-mounted> <bar-used>
+
+label-mounted = %mountpoint% %percentage_used%%
+
+; Bar
+bar-used-format = ${layout.bar-format}
+bar-used-gradient = true
+bar-used-foreground-0 = ${color.bar-fg}
+bar-used-foreground-1 = ${color.bar-fg}
+bar-used-foreground-2 = ${color.bar-fg}
+bar-used-foreground-3 = ${color.bar-fg}
+bar-used-foreground-4 = ${color.warn-fg}
+
+bar-used-width = 6
+bar-used-fill = ${layout.bar-fill-icon}
+bar-used-indicator =
+bar-used-empty = ${layout.bar-fill-icon}
+
 
 [module/cpu]
 type = internal/cpu
 inherit = common-prefix-format
 
 format = <label> <bar-load>
-format-prefix = 漣
+format-prefix = 
 
 label = %percentage:2% ％
 
@@ -30,7 +54,7 @@ bar-load-empty = ${layout.bar-fill-icon}
 type = internal/memory
 inherit = common-prefix-format
 
-format-prefix = ﬘
+format-prefix = ﬙
 label = %gb_used%
 
 

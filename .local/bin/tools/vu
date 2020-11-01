@@ -1,4 +1,7 @@
-#!/usr/bin/env sh
+#!/bin/sh
+
+# This is a wrapper for vifm to allow ueberzug images.
+
 export FIFO_UEBERZUG="/tmp/vifm-ueberzug-${PPID}"
 
 cleanup() {
