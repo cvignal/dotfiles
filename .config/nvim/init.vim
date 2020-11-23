@@ -12,6 +12,7 @@ set fileencodings=utf-8
 
 " Basic stuff
 let mapleader=","
+set foldmethod=indent
 
 "" Tabs. May be overridden by autocmd rules
 set tabstop=2
@@ -54,6 +55,9 @@ set nocp
 set nofoldenable
 syntax on
 filetype plugin indent on
+
+" Set it to scroll when cursor is # lines from top/bottom
+set so=7
 
 set go=a
 set splitbelow splitright
@@ -145,7 +149,7 @@ noremap <leader>w :bn<CR>
 
 " NerdTree and plugin config
 map <leader>n :NERDTreeToggle<CR>
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
@@ -162,15 +166,22 @@ let g:NERDTreeIndicatorMapCustom = {
 let g:deoplete#enable_at_startup=1
 call deoplete#custom#option('ignore_sources', {'_': ['around', 'buffer']})
 
+fun! StripTrailingWhitespace()
+    " Only strip if the b:noStripeWhitespace variable isn't set
+    if &ft =~ 'markdown\|vimwiki'
+        return
+    endif
+    %s/\s\+$//e
+endfun
 " Autocmd for various sys files
 autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
-autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * call StripTrailingWhitespace()
 autocmd BufWritePost ~/.config/bmdirs,~/.config/bmfiles !shortcuts
 autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 
 " Tags config
-map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+autocmd FileType elixir nnoremap <C-\> :tabedit :call alchemist#exdef()<CR>
 
 " Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
@@ -190,6 +201,20 @@ nnoremap <leader>gd :Gvdiff!<CR>
 nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
 
+" Config for Latex usage
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
+" Snippets
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+
+" PHP7
+let g:ultisnips_php_scalar_types = 1
 
 "*****************************************************************************
 "" Convenience variables

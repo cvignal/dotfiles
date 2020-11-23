@@ -20,6 +20,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'prettier/vim-prettier', {'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']}
   Plug 'scrooloose/nerdcommenter'
   Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
   Plug 'junegunn/goyo.vim'
   Plug 'PotatoesMaster/i3-vim-syntax'
   Plug 'jreybert/vimagit'
@@ -30,14 +31,13 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'bling/vim-airline'
   Plug 'kovetskiy/sxhkd-vim'
   Plug 'wikitopian/hardmode'
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'godlygeek/tabular'
   Plug 'neomake/neomake'
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'thinca/vim-ref'
   Plug 'tpope/vim-fugitive'
+  Plug 'chrisbra/unicode.vim'
   """ Languages specific plugs
   Plug 'elixir-editors/vim-elixir'
   Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
@@ -49,11 +49,10 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'slashmili/alchemist.vim'
   Plug 'Shougo/deoplete-clangx'
   Plug 'wokalski/autocomplete-flow'
-  Plug 'Shougo/neosnippet'
-  Plug 'Shougo/neosnippet-snippets'
   Plug 'Shougo/neco-syntax'
   Plug 'deoplete-plugins/deoplete-jedi'
   Plug 'cespare/vim-toml'
+  Plug 'lervag/vimtex'
   """ Themes
   Plug 'flazz/vim-colorschemes'
   Plug 'ayu-theme/ayu-vim'
