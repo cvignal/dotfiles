@@ -28,7 +28,9 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'jiangmiao/auto-pairs'
   Plug 'LukeSmithxyz/vimling'
   Plug 'vimwiki/vimwiki'
-  Plug 'bling/vim-airline'
+  Plug 'tools-life/taskwiki'
+  Plug 'powerman/vim-plugin-AnsiEsc'
+  Plug 'vim-airline/vim-airline'
   Plug 'kovetskiy/sxhkd-vim'
   Plug 'wikitopian/hardmode'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -53,12 +55,12 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'deoplete-plugins/deoplete-jedi'
   Plug 'cespare/vim-toml'
   Plug 'lervag/vimtex'
+  Plug 'lumiliet/vim-twig'
   """ Themes
-  Plug 'flazz/vim-colorschemes'
   Plug 'ayu-theme/ayu-vim'
+  Plug 'morhetz/gruvbox'
   Plug 'arcticicestudio/nord-vim'
   Plug 'tomasr/molokai'
-  Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 filetype plugin indent on
