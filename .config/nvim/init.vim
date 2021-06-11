@@ -77,22 +77,25 @@ else
 endif
 
 " Python config
-let g:python3_host_prog='/usr/bin/python3.8'
+let g:python3_host_prog='/usr/bin/python3.9'
 let g:python_host_prog='/usr/bin/python2.7'
 
 " Themes
 set termguicolors
+"let g:gruvbox_transparent_bg = 1
+set bg=dark
 colorscheme gruvbox
+" autocmd VimEnter * hi Normal ctermbg=none
 hi Normal guibg=NONE ctermbg=NONE
 
 " vim-airline
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#buffer_min_count = 2
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
-let g:airline_theme='bubblegum'
+let g:airline_theme='gruvbox'
 
 "" Status bar
 set laststatus=2
@@ -181,7 +184,7 @@ autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 
 " Tags config
-autocmd FileType elixir nnoremap <C-\> :tabedit :call alchemist#exdef()<CR>
+" autocmd FileType elixir nnoremap <C-\> :tabedit :call alchemist#exdef()<CR>
 
 " Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
@@ -209,7 +212,7 @@ set conceallevel=1
 let g:tex_conceal='abdmg'
 
 " Snippets
-let g:UltiSnipsExpandTrigger="<c-j>"
+"let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
