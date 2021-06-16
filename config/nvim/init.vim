@@ -1,6 +1,6 @@
 " vim:fdm=marker
 
-source $HOME/.config/nvim/plug.vim
+source $HOME/dotfiles/.config/nvim/plug.vim
 
 "*****************************************************************************
 "" Basic Setup
