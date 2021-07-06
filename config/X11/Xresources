@@ -1,3 +1,5 @@
+*.font: Roboto Mono Nerd Font:pixelsize=15:antialias=true:autohint=true;
+rofi.font: RobotoMono Nerd Font Regular 14
 *.alpha: 0.92
 ! hard contrast: *background: #1d2021
 *background: #282828
@@ -27,3 +29,4 @@
 ! LightGrey + White
 *color7:  #a89984
 *color15: #ebdbb2
+Xcursor.size: 16

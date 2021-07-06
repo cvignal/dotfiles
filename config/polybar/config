@@ -46,13 +46,14 @@ cyan        = ${xrdb:color13}
 
 [color]
 base-bg     = #32302f
-glyph-bg    = #de0a0a0a
+;glyph-bg    = #de0a0a0a
+glyph-bg   = #fa0a0a0a
 module-bg   = #fa0a0a0a
 selected-bg = #dc1a1a1a
 
 text-fg = ${xcolor.white}
-icon-fg = ${xcolor.yellow}
-bar-fg  = ${xcolor.darkyellow}
+icon-fg = ${xcolor.blue}
+bar-fg  = ${xcolor.darkblue}
 warn-fg = #821717
 
 
@@ -108,7 +109,7 @@ modules-right = left-end-top wifi eth right-end-bottom left-end-top date right-e
 
 tray-background = ${color.module-bg}
 tray-padding = ${layout.module-padding}
-tray-position = right
+;override-redirect = true
 
 
 [bar/top-secondary]

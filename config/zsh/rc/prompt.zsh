@@ -17,7 +17,7 @@ COMMON_COLORS_BG_JOBS=yellow
 # PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 # Host
 common_host() {
-    echo "%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M :%{$reset_color%}"
+    echo "%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M:%{$reset_color%}"
 }
 
 # Current directory
@@ -42,5 +42,9 @@ common_bg_jobs() {
 
 _vbe_setprompt () {
     setopt prompt_subst
-    PROMPT="$(common_host)$(common_current_dir)$(common_bg_jobs)$(common_return_status)"
+    if [[ $COLUMNS -gt 50 ]] ; then
+      PROMPT="$(common_host)$(common_current_dir)$(common_bg_jobs)$(common_return_status)"
+    else
+      PROMPT="$(common_current_dir)$(common_bg_jobs)$(common_return_status)"
+    fi
 }
