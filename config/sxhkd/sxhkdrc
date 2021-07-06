@@ -2,7 +2,7 @@
 super + Return
 	$TERMINAL
 super + d
-	dmenu_run
+	appsmenu
 super + r
 	$TERMINAL -e $FILE
 super + e
@@ -12,9 +12,9 @@ super + m
 super + n
 	$TERMINAL -e newsboat
 super + i
-	$TERMINAL -e htop
+	$TERMINAL -e ytop
 super + y
-	$TERMINAL -e calcurse -D ~/.config/calcurse
+	$TERMINAL -e calcurse
 super + shift + a
 	$TERMINAL -e pulsemixer; pkill -RTMIN+10 i3blocks
 super + shift + c
@@ -25,8 +25,8 @@ super + w
 	webby | xargs -r $BROWSER
 super + shift + w
 	$BROWSER
-super + shift + g
-	gimp
+# super + shift + g
+#	gimp
 
 # Et cetera...
 super + grave
@@ -36,11 +36,11 @@ super + Scroll_Lock
 super + Insert
 	showclip
 super + shift + x
-	prompt "Shutdown computer?" "sudo -A shutdown -h now"
+	powermenu
 super + shift + BackSpace
 	prompt "Reboot computer?" "sudo -A shutdown -r now"
 super + x
-	mpc pause; pauseallmpv; i3lock-fancy; xset dpms force off
+	lock
 XF86Launch1
 	xset dpms force off
 XF86AudioMute
@@ -116,8 +116,8 @@ super + F1
 super + F3
 	displayselect
 # Hibernate
-super + F4
-	prompt 'Hibernate computer?' 'sudo systemctl suspend'
+# super + F4
+# prompt 'Hibernate computer?' 'sudo systemctl suspend'
 # Restart/rescan wifi/eth networks
 super + F5
 	sudo -A systemctl restart NetworkManager
@@ -138,9 +138,4 @@ super + F10
 	dmenuumount
 # Search with Duckduckgo
 super + F11
-	ducksearch
-# Network Manager interface
-super + F12
-	$TERMINAL -e sudo -A nmtui
-
-
+	$TERMINAL -e pulsemixer

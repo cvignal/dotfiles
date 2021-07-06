@@ -32,12 +32,9 @@ launch_bar() {
 
 launch_secondary_bars() {
   IFS=$(printf '\n')
-  for line in $(xrandr --listactivemonitors | sed '1d' | grep -v '\*'); do
-    output=${line##* }  # Get output name from last column
-    printf "${BLUE}::${NC} Launching secondary bars on %s...\n" "${output}"
-    launch_bar "${output}" top-secondary
-    launch_bar "${output}" bottom-secondary
-  done
+  printf "${BLUE}::${NC} Launching secondary bars on %s...\n" "$1"
+  launch_bar "$1" top-secondary
+  launch_bar "$1" bottom-secondary
 }
 
 main() {
@@ -57,9 +54,8 @@ main() {
   launch_bar '' top-primary
   launch_bar '' bottom-primary
 
-  # launch_secondary_bars
+  [[ $# -ge 1 ]] && launch_secondary_bars $1
 }
 
-main
-
+main $@
 # kak:filetype=sh

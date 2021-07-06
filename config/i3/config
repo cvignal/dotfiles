@@ -8,8 +8,8 @@
 
 # #---Basic Definitions---# #
 for_window [class="^.*"] border pixel 2
-gaps inner 10
-gaps outer 10
+gaps inner 5
+gaps outer 5
 smart_gaps  on
 hide_edge_borders smart_no_gaps
 set $term --no-startup-id $TERMINAL
@@ -122,7 +122,7 @@ bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 15
 
 bindsym $mod+Shift+y		exec --no-startup-id i3resize left
 
-bindsym $mod+u			exec --no-startup-id ddspawn tmuxdd
+# bindsym $mod+u			exec --no-startup-id ddspawn tmuxdd
 bindsym $mod+Shift+u		exec --no-startup-id i3resize down
 
 bindsym $mod+Shift+i		exec --no-startup-id i3resize up
@@ -268,9 +268,12 @@ bindsym $mod+Shift+plus		exec --no-startup-id pulsemixer --change-volume +15
 bindsym $mod+minus 		exec --no-startup-id pulsemixer --change-volume -5
 bindsym $mod+Shift+minus	exec --no-startup-id pulsemixer --change-volume -15
 
-exec --no-startup-id ~/.local/bin/i3cmds/screen_layout
 
-exec --no-startup-id ~/.config/polybar/launch.sh
-exec --no-startup-id ~/.local/bin/setbg
-exec "setxkbmap -option 'grp:alt_shift_toggle' -layout us,fr"
+# Startup
+
+exec_always --no-startup-id autorandr --change
+exec_always --no-startup-id dunst
+
+exec_always  --no-startup-id "setxkbmap -option 'grp:alt_shift_toggle' -layout us,fr"
 exec --no-startup-id ~/.local/bin/i3cmds/restore_redshift
+exec_always --no-startup-id blueman-applet

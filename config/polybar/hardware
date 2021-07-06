@@ -5,8 +5,7 @@
 [module/filesystem]
 type = internal/fs
 inherit = common-prefix-format
-mount-0 = /home
-mount-1 = /
+mount-0 = /
 spacing = 1
 format-mounted = <label-mounted> <bar-used>
 

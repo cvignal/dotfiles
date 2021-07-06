@@ -164,7 +164,7 @@
     ### Icons ###
 
     # Align icons left/right/off
-    icon_position = off
+    icon_position = left
 
     # Scale small icons up to this size, set to 0 to disable. Helpful
     # for e.g. small files or high-dpi screens. In case of conflict,
@@ -288,14 +288,14 @@
     foreground = "#888888"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
-    #icon = /path/to/icon
+    icon = /usr/share/icons/Adwaita/16x16/status:/usr/share/icons/Adwaita/16x16/devices
 
 [urgency_normal]
     background = "#285577"
     foreground = "#ffffff"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
-    #icon = /path/to/icon
+    icon = /usr/share/icons/Adwaita/16x16/status:/usr/share/icons/Adwaita/16x16/devices
 
 [urgency_critical]
     background = "#900000"
@@ -303,7 +303,7 @@
     frame_color = "#ff0000"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
-    #icon = /path/to/icon
+    icon = /usr/share/icons/Adwaita/16x16/status:/usr/share/icons/Adwaita/16x16/devices
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.

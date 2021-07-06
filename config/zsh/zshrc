@@ -5,10 +5,13 @@ source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc"
 
+export PATH=$PATH:$HOME/.local/share/cargo/bin
+export KNIFE_HOME=$HOME/work/chef-repo/.chef
+export CHEF_USER="cvignal"
+
 () {
-    for config_file ($ZDOTDIR/rc/*.zsh) source $config_file
+    for config_file (${ZDOTDIR:-/home/charles/.config/zsh}/rc/*.zsh) source $config_file
     [ ! -e $ZDOTDIR/env ] || . $ZSH/env
 }
 
-_vbe_setprompt
-_vbe_add_prompt_vcs
+add-zsh-hook precmd _vbe_setprompt
