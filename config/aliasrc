@@ -40,7 +40,8 @@ alias ka="killall" \
   sudo='sudo -A' \
   infra-cli='cd ~/work/chef-repo/tools/ && ./infra-cli' \
   wifiscan='nmcli device wifi rescan && nmcli device wifi list' \
-  zpm='cd ~/work/zpm && java -jar release/1.6_no_rest_version/zpm.jar'
+  zpm='cd ~/work/zpm && java -jar release/1.6_no_rest_version/zpm.jar' \
+  sshr='ssh -J access01.cloud.kbrwadventure.com'
 
 # Use neovim for vim if present.
 command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d" # Use neovim for vim if present.

@@ -3,7 +3,7 @@ bd	${XDG_CONFIG_HOME:-$HOME/.config}/directories
 bw	${XDG_CONFIG_HOME:-$HOME/.config}/bookmarks
 cfa	${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc
 cfz	$ZDOTDIR/.zshrc
-cfv	${XDG_CONFIG_HOME:-$HOME/.config}/nvim/init.vim
+cfv	${XDG_CONFIG_HOME:-$HOME/.config}/nvim/init.lua
 cfm	${XDG_CONFIG_HOME:-$HOME/.config}/mutt/muttrc
 cfx	${XDG_CONFIG_HOME:-$HOME/.config}/Xresources
 cfu	${XDG_CONFIG_HOME:-$HOME/.config}/newsboat/urls

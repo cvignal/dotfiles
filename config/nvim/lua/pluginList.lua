@@ -21,13 +21,13 @@ return packer.startup(
 
 
         -- language related plugins
-        use {
-            "nvim-treesitter/nvim-treesitter",
-            event = "BufRead",
-            config = function()
-                require("treesitter-nvim").config()
-            end
-        }
+        -- use {
+        --     "nvim-treesitter/nvim-treesitter",
+        --     event = "BufRead",
+        --     config = function()
+        --         require("treesitter-nvim").config()
+        --     end
+        -- }
 
         use {
             "neovim/nvim-lspconfig",
