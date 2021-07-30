@@ -10,7 +10,7 @@ export KNIFE_HOME=$HOME/work/chef-repo/.chef
 export CHEF_USER="cvignal"
 
 () {
-    for config_file (${ZDOTDIR:-/home/charles/.config/zsh}/rc/*.zsh) source $config_file
+    for config_file (${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/rc/*.zsh) source $config_file
     [ ! -e $ZDOTDIR/env ] || . $ZSH/env
 }
 
