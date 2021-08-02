@@ -1,6 +1,7 @@
 local cmd = vim.cmd
 
-local colors = require "themes/gruvbox"
+local global_theme = "themes/" .. vim.g.nvchad_theme
+local colors = require(global_theme)
 
 local white = colors.white
 local darker_black = colors.darker_black
@@ -12,6 +13,7 @@ local one_bg3 = colors.one_bg3
 local light_grey = colors.light_grey
 local grey = colors.grey
 local grey_fg = colors.grey_fg
+local grey_fg2 = colors.grey_fg2
 local red = colors.red
 local line = colors.line
 local green = colors.green
@@ -34,13 +36,15 @@ local function fg_bg(group, fgcol, bgcol)
     cmd("hi " .. group .. " guifg=" .. fgcol .. " guibg=" .. bgcol)
 end
 
+cmd("hi Normal guibg=NONE ctermbg=NONE")
+
 -- blankline
 
 fg("IndentBlanklineChar", line)
 
 -- misc --
 fg("LineNr", grey)
-fg("Comment", grey)
+fg("Comment", grey_fg)
 fg("NvimInternalError", red)
 fg("VertSplit", line)
 fg("EndOfBuffer", black)
@@ -60,19 +64,23 @@ fg("cursorlinenr", white)
 
 -- git signs ---
 fg_bg("DiffAdd", nord_blue, "none")
-fg_bg("DiffChange", one_bg2, "none")
+fg_bg("DiffChange", grey_fg, "none")
 fg_bg("DiffModified", nord_blue, "none")
 
 -- NvimTree
 fg("NvimTreeFolderIcon", blue)
 fg("NvimTreeFolderName", blue)
+fg("NvimTreeOpenedFolderName", blue)
+fg("NvimTreeEmptyFolderName", blue)
 fg("NvimTreeIndentMarker", one_bg2)
 fg("NvimTreeVertSplit", darker_black)
 bg("NvimTreeVertSplit", darker_black)
+fg("NvimTreeEndOfBuffer", darker_black)
 
-fg("NvimTreeRootFolder", darker_black)
---bg("NvimTreeNormal", darker_black)
+vim.cmd("hi NvimTreeRootFolder gui=underline guifg=" .. purple)
+bg("NvimTreeNormal", darker_black)
 fg_bg("NvimTreeStatuslineNc", darker_black, darker_black)
+fg_bg("NvimTreeWindowPicker", red, black2)
 
 -- telescope
 fg("TelescopeBorder", line)
@@ -96,42 +104,18 @@ fg("LspDiagnosticsVirtualTextInformation", green)
 fg("LspDiagnosticsSignHint", purple)
 fg("LspDiagnosticsVirtualTextHint", purple)
 
--- bufferline
-
-fg_bg("BufferLineFill", grey_fg, black2)
-fg_bg("BufferLineBackground", light_grey, black2)
-
-fg_bg("BufferLineBufferVisible", light_grey, black2)
-fg_bg("BufferLineBufferSelected", white, black)
-
-cmd "hi BufferLineBufferSelected gui=bold"
-
--- tabs
-fg_bg("BufferLineTab", light_grey, one_bg3)
-fg_bg("BufferLineTabSelected", black2, nord_blue)
-fg_bg("BufferLineTabClose", red, black)
-
-fg_bg("BufferLineIndicator", black2, black2)
-fg_bg("BufferLineIndicatorSelected", black, black)
-
--- separators
-fg_bg("BufferLineSeparator", line, black2)
-fg_bg("BufferLineSeparatorVisible", line, black2)
-fg_bg("BufferLineSeparatorSelected", black, black2)
-
--- modified buffers
-fg_bg("BufferLineModified", red, black2)
-fg_bg("BufferLineModifiedVisible", red, black2)
-fg_bg("BufferLineModifiedSelected", green, black)
-
--- close buttons
-fg_bg("BufferLineCLoseButtonVisible", light_grey, black2)
-fg_bg("BufferLineCLoseButton", light_grey, black2)
-fg_bg("BufferLineCLoseButtonSelected", red, black)
-
 -- dashboard
 
 fg("DashboardHeader", grey_fg)
 fg("DashboardCenter", grey_fg)
 fg("DashboardShortcut", grey_fg)
-fg("DashboardFooter", black)
+fg("DashboardFooter", grey_fg)
+
+-- packer's floating window
+
+bg("NormalFloat", black2)
+bg("FloatBorder", black2)
+fg("FloatBorder", black2)
+
+-- set bg color for nvim
+-- bg("Normal", black)
