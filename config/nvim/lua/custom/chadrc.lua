@@ -22,9 +22,11 @@ M.options = {
 M.mappings = {
 }
 
+local userPlugins = require "custom.plugins"
+
 M.plugins = {
   status = {
-    dashboard = true
+    alpha = true
   },
   options = {
     lspconfig = {
@@ -32,8 +34,9 @@ M.plugins = {
     }
   },
   default_plugin_config_replace = {
-    dashboard = "custom.plugins.dashboard"
-  }
+    alpha = "custom.plugins.alpha"
+  },
+  install = userPlugins
 }
 
 return M
