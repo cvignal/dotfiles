@@ -139,3 +139,7 @@ super + F10
 # Search with Duckduckgo
 super + F11
 	$TERMINAL -e pulsemixer
+
+# Close notification
+control + space
+        dunstctl close
