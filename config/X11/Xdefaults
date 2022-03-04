@@ -1,4 +1,4 @@
-*.alpha: 0.92
+! *.alpha: 0.92
 ! hard contrast: *background: #1d2021
 *background: #282828
 ! soft contrast: *background: #32302f

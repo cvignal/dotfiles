@@ -2,9 +2,9 @@
   /* General */
   confirm-text-font:                    "SauceCodePro Nerd Font Medium 14";
   text-font:                            "SauceCodePro Nerd Font Medium 14";
-  text-font-mono:                       "RobotoMono Nerd Font Regular 14";
-  icon-font:                            "Hurmit Nerd Font Mono 60";
-  icon-font-small:                      "Hurmit Nerd Font Mono 24";
+  text-font-mono:                       "RobotoMono Nerd Font Mono 14";
+  icon-font:                            "RobotoMono Nerd Font Mono 60";
+  icon-font-small:                      "RobotoMono Nerd Font Mono 24";
   inputbar-margin:                      4px 4px;
   inputbar-2-margin:                    0px 0px;
   prompt-padding:                       16px 20px;

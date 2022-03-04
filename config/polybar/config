@@ -52,8 +52,8 @@ module-bg   = #fa0a0a0a
 selected-bg = #dc1a1a1a
 
 text-fg = ${xcolor.white}
-icon-fg = ${xcolor.blue}
-bar-fg  = ${xcolor.darkblue}
+icon-fg = ${xcolor.magenta}
+bar-fg  = ${xcolor.darkmagenta}
 warn-fg = #821717
 
 

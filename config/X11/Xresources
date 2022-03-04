@@ -1,32 +1,38 @@
 *.font: Roboto Mono Nerd Font:pixelsize=15:antialias=true:autohint=true;
 rofi.font: RobotoMono Nerd Font Regular 14
 *.alpha: 0.92
-! hard contrast: *background: #1d2021
-*background: #282828
-! soft contrast: *background: #32302f
-*foreground: #ebdbb2
-! Black + DarkGrey
-*color0:  #282828
-*color8:  #928374
-! DarkRed + Red
-*color1:  #cc241d
-*color9:  #fb4934
-! DarkGreen + Green
-*color2:  #98971a
-*color10: #b8bb26
-! DarkYellow + Yellow
-*color3:  #d79921
-*color11: #fabd2f
-! DarkBlue + Blue
-*color4:  #458588
-*color12: #83a598
-! DarkMagenta + Magenta
-*color5:  #b16286
-*color13: #d3869b
-! DarkCyan + Cyan
-*color6:  #689d6a
-*color14: #8ec07c
-! LightGrey + White
-*color7:  #a89984
-*color15: #ebdbb2
+*background: #1E1E2E
+*foreground: #D9E0EE
+
+! Gray
+*color0: #6E6C7E
+*color8: #988BA2
+
+! Red
+*color1: #F28FAD
+*color9: #F28FAD
+
+! Green
+*color2: #ABE9B3
+*color10: #ABE9B3
+
+! Yellow
+*color3: #FAE3B0
+*color11:  #FAE3B0
+
+! Blue
+*color4: #96CDFB
+*color12: #96CDFB
+
+! Maguve
+*color5: #DDB6F2
+*color13: #DDB6F2
+
+! Pink
+*color6: #F5C2E7
+*color14: #F5C2E7
+
+! Whites
+*color7: #C3BAC6
+*color15: #D9E0EE
 Xcursor.size: 16

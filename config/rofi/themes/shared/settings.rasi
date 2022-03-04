@@ -1,7 +1,7 @@
 /**
  * Allows to change the settings of every menu simply by editing this file
  */
-@import "colorschemes/gruvbox.rasi"
+@import "colorschemes/catppuccin.rasi"
 @import "resolutions/2560x1440.rasi"
 
 #window {

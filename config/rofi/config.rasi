@@ -1,6 +1,6 @@
 configuration {
   show-icons:       true;
-  icon-theme:       "Paper";
+  icon-theme:       "Papirus";
   modi:             "drun";
   display-drun:     "apps";
   hide-scrollbar:   true;

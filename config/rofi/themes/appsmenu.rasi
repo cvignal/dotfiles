@@ -6,6 +6,8 @@
   background-color: @background;
   text-color: @foreground-list;
   font: @text-font;
+  columns: 2;
+  hide-scrollbar: true;
 }
 #window {
   padding: @list-8-window-padding;

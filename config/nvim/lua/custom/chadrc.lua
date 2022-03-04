@@ -7,7 +7,7 @@ local M = {}
 -- example of changing theme:
 
 M.ui = {
-   theme = "gruvchad",
+   theme = "catppuccin",
    -- transparency = true
 }
 
