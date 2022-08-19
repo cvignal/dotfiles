@@ -1,20 +1,27 @@
 -- OPTIONS
 -- New options
 
-vim.opt.wildmode = "longest,list,full"
-vim.opt.backspace = "indent,eol,start"
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
+local g = vim.g
+local o = vim.opt
 
-vim.g.session_directory = tostring(os.getenv("HOME")) .. "/.config/nvim/session"
-vim.g.session_autoload = "no"
-vim.g.session_autosave = "no"
+g.mapleader = ","
+o.relativenumber = true
+o.tabstop = 4
 
-vim.opt.backup = false
-vim.opt.swapfile = false
-vim.opt.compatible = false
-vim.opt.so = 7
-vim.opt.undodir = tostring(os.getenv("HOME")) .. "/.cache/nvim/undodir"
-vim.opt.undofile = true
-vim.opt.foldmethod = "indent"
-vim.opt.foldlevelstart = 20
+o.wildmode = "longest,list,full"
+o.backspace = "indent,eol,start"
+o.hlsearch = false
+o.incsearch = true
+
+g.session_directory = tostring(os.getenv("HOME")) .. "/.config/nvim/session"
+g.session_autoload = "no"
+g.session_autosave = "no"
+
+o.backup = false
+o.swapfile = false
+o.compatible = false
+o.so = 7
+o.undodir = tostring(os.getenv("HOME")) .. "/.cache/nvim/undodir"
+o.undofile = true
+o.foldmethod = "indent"
+o.foldlevelstart = 20

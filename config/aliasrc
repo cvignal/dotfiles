@@ -22,7 +22,7 @@ alias ka="killall" \
 	sdn="sudo shutdown -h now" \
 	gua="git remote | xargs -L1 git push --all" \
 	ls="ls -hN --color=auto --group-directories-first" \
-  ll="ls -l" \
+        ll="ls -l" \
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
 	ccat="highlight --out-format=ansi" \
@@ -33,15 +33,21 @@ alias ka="killall" \
 	upc="sudo pacman -Syu; pkill -RTMIN+8 i3blocks" \
 	lsp="pacman -Qett --color=always | less" \
 	ffmpeg="ffmpeg -hide_banner" \
-  la="ls -la" \
-  gcl="git clone" \
-  start_endpoint="cd ~/work/endpoint/endpoints && python3 -m http.server 8000" \
-  kbrw_tunnel="bash /home/charles/work/endpoint/bin/tunnels-start.sh cvignal qa" \
-  sudo='sudo -A' \
-  infra-cli='cd ~/work/chef-repo/tools/ && ./infra-cli' \
-  wifiscan='nmcli device wifi rescan && nmcli device wifi list' \
-  zpm='cd ~/work/zpm && java -jar release/1.6_no_rest_version/zpm.jar' \
-  sshr='ssh -J access01.cloud.kbrwadventure.com'
+    la="ls -la" \
+    gcl="git clone" \
+    start_endpoint="cd ~/work/endpoint/endpoints && python3 -m http.server 8000" \
+    kbrw_tunnel="bash /home/charles/work/endpoint/bin/tunnels-start.sh cvignal qa" \
+    sudo='sudo -A' \
+    infra-cli='cd ~/work/chef-repo/tools/ && ./infra-cli' \
+    wifiscan='nmcli device wifi list --rescan yes' \
+    zpm='cd ~/work/zpm && java -jar release/1.6_no_rest_version/zpm.jar' \
+    sshr='ssh -J access01.cloud.kbrwadventure.com' \
+    ssh='TERM=xterm-256color ssh' \
+    pingc='ping -c 5' \
+    kbrw_proxy='ssh -N -D 1111 cvignal@access01.cloud.kbrwadventure.com&' \
+    services='cd services/' \
+    admin='cd admin/' \
+    picker='cd picker/' \
 
 # Use neovim for vim if present.
 command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d" # Use neovim for vim if present.

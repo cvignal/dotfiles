@@ -7,13 +7,6 @@
 require "custom.autocmds"
 require "custom.options"
 
-require("filetype").setup({
-  overrides = {
-    extensions = {
-      exs = "elixir"
-    }
-  }
-})
 -- NOTE: we heavily suggest using Packer's lazy loading (with the 'event' field)
 -- see: https://github.com/wbthomason/packer.nvim
 -- https://nvchad.github.io/config/walkthrough

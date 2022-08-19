@@ -118,7 +118,7 @@ bindsym $mod+Shift+q		[con_id="__focused__" instance="^(?!dropdown_).*$"] exec -
 bindsym $mod+Shift+r		exec --no-startup-id winresize
 
 bindsym $mod+t			split toggle
-bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 15
+bindsym $mod+Shift+t		gaps inner current set 5; gaps outer current set 5
 
 bindsym $mod+Shift+y		exec --no-startup-id i3resize left
 
@@ -167,7 +167,7 @@ bindsym $mod+Shift+z		gaps outer current minus 5
 
 bindsym $mod+c			exec --no-startup-id cabl
 
-bindsym $mod+v			exec --no-startup-id $term -e $EDITOR -c "VimwikiIndex"
+bindsym $mod+v			exec --no-startup-id notion-app-enhanced
 
 bindsym $mod+b			bar mode toggle
 bindsym $mod+Shift+b		floating toggle; sticky toggle; exec --no-startup-id hover left
@@ -274,6 +274,6 @@ bindsym $mod+Shift+minus	exec --no-startup-id pulsemixer --change-volume -15
 exec_always --no-startup-id autorandr --change
 exec_always --no-startup-id dunst
 
-exec_always  --no-startup-id "setxkbmap -option 'grp:alt_shift_toggle' -layout us,fr"
 exec --no-startup-id ~/.local/bin/i3cmds/restore_redshift
 exec_always --no-startup-id blueman-applet
+exec_always  --no-startup-id "setxkbmap -option 'grp:alt_shift_toggle' -layout us,fr"
