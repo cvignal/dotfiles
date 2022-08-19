@@ -1,14 +1,62 @@
 -- Don't show any numbers inside terminals
-vim.cmd [[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal ]]
+local autocmd = vim.api.nvim_create_autocmd
 
--- Don't show status line on certain windows
-vim.cmd [[ autocmd BufEnter,BufWinEnter,FileType,WinEnter * lua require("core.utils").hide_statusline() ]]
-vim.cmd [[ au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == "NvimTree" | set laststatus=0 | else | set laststatus=2 | endif ]]
+autocmd("TermOpen", {
+  pattern = "term://*",
+  command = "setlocal nonumber norelativenumber | setfiletype terminal"
+})
 
-vim.cmd [[ au BufEnter term://* set laststatus=0 ]]
-vim.cmd [[ au BufWritePost *Xresources,*Xdefaults !xrdb % ]]
-vim.cmd [[ au BufWritePre * :%s/\s\+$//e ]]
-vim.cmd [[ au BufWritePost ~/.config/bmdirs,~/.config/bmfiles !shortcuts ]]
-vim.cmd [[ au BufWritePost *sxhkdrc !pkill -USR1 sxhkd ]]
-vim.cmd [[ au BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif ]]
-vim.cmd [[ au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
+-- Open a file from its last left off position
+autocmd("BufReadPost", {
+   callback = function()
+      if not vim.fn.expand("%:p"):match ".git" and vim.fn.line "'\"" > 1 and vim.fn.line "'\"" <= vim.fn.line "$" then
+         vim.cmd "normal! g'\""
+         vim.cmd "normal zz"
+      end
+   end,
+})
+
+-- File extension specific tabbing
+autocmd("Filetype", {
+   pattern = "apiblueprint",
+   callback = function()
+      vim.opt_local.expandtab = true
+      vim.opt_local.tabstop = 4
+      vim.opt_local.shiftwidth = 4
+      vim.opt_local.softtabstop = 4
+   end,
+})
+
+autocmd("BufEnter", {
+  pattern = "term://*",
+  command = "set laststatus=0",
+})
+
+autocmd("BufWritePost", {
+  pattern = {"*Xresources", "*Xdefaults"},
+  command = "!xrdb %"
+})
+
+autocmd({ "FileWritePre", "FileAppendPre", "FilterWritePre", "BufWritePre" }, {
+  pattern = "*",
+  command = ":call TrimWhitespace()"
+})
+
+vim.api.nvim_exec([[
+  function! TrimWhitespace()
+    if &ft != 'markdown'
+      %s/\s\+$//e
+    endif
+  endfunction
+]], false)
+
+
+autocmd("BufWritePost", {
+  pattern = {"~/.config/bmdirs", "~/.config/bmfiles"},
+  command = "!shortcuts"
+})
+
+autocmd("BufWritePost", {
+  pattern = "*sxhkdrc",
+  command = "!pkill -USR1 sxhkd"
+})

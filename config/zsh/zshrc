@@ -5,7 +5,7 @@ source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc"
 
-export PATH=$PATH:$HOME/.local/share/cargo/bin
+export PATH=$PATH:$HOME/.local/share/cargo/bin:$HOME/work/simple_ha_state/:/opt/android-sdk/platform-tools/
 export KNIFE_HOME=$HOME/work/chef-repo/.chef
 export CHEF_USER="cvignal"
 

@@ -2,9 +2,7 @@
 -- lua/custom/chadrc.lua
 
 local M = {}
-
--- make sure you maintain the structure of `core/default_config.lua` here,
--- example of changing theme:
+local userPlugins = require "custom.plugins"
 
 M.ui = {
    theme = "catppuccin",
@@ -12,31 +10,24 @@ M.ui = {
 }
 
 M.options = {
-  mapleader = ",",
-  relativenumber = true,
-  nvChad = {
-    insert_nav = false
-  }
+  user = function()
+    require("custom.options")
+  end,
 }
-
-M.mappings = {
-}
-
-local userPlugins = require "custom.plugins"
 
 M.plugins = {
-  status = {
-    alpha = true
-  },
   options = {
     lspconfig = {
       setup_lspconf = "custom.plugins.lspconfig"
     }
   },
-  default_plugin_config_replace = {
-    alpha = "custom.plugins.alpha"
+  override = {
+    ["L3MON4D3/LuaSnip"] = {}
   },
-  install = userPlugins
+  remove = {
+    "nathom/filetype.nvim",
+  },
+  user = userPlugins
 }
 
 return M
