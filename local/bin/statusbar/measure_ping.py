@@ -14,7 +14,7 @@ import subprocess
 import threading
 from typing import Pattern
 
-HOST_TO_PING: str = '1.1.1.1'
+HOST_TO_PING: str = '8.8.8.8'
 
 PING_PATTERN: Pattern = re.compile(r'time=([0-9]+(\.[0-9]+)?) ms')
 

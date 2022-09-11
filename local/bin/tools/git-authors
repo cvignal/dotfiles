@@ -1,0 +1,4 @@
+#!/bin/bash
+
+git ls-tree -r -z --name-only HEAD -- $1 | sed 's/^/.\//' | xargs -0 -n1 git blame \
+ --line-porcelain HEAD |grep -ae "^author "|sort|uniq -c|sort -nr

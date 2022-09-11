@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+#
+# Script to view csv in less more easily
+
+SEPARATOR=${2:-";"}
+
+column -t $1 -s$SEPARATOR | less -F -S -X -K

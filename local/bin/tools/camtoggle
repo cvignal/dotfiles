@@ -1,2 +1,7 @@
 #!/bin/sh
-pkill -f /dev/video || mpv --no-osc --no-input-default-bindings --input-conf=/dev/null --geometry=-0-0 --autofit=30% --title="mpvfloat" --profile=low-latency --untimed /dev/video0
+if [ -z "$(lsusb | grep "ARC")" ]; then
+  device=/dev/video1
+else
+  device=dev/video-cam
+fi
+pkill -f /dev/video || mpv --no-osc --no-input-default-bindings --input-conf=/dev/null --geometry=-0-0 --autofit=30% --title="mpvfloat" --profile=low-latency --untimed $device

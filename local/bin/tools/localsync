@@ -1,0 +1,23 @@
+#!/bin/sh
+
+rsync -amP --include='*.lua' --include='*/' --exclude='*' ~/.config/nvim/lua/custom/ ~/dotfiles/config/nvim/lua/custom
+rsync -amP --include='*/' ~/.config/polybar/ ~/dotfiles/config/polybar
+rsync -amP --include='*/' ~/.config/rofi/ ~/dotfiles/config/rofi
+rsync -amP --include='*/' ~/.config/ranger/ ~/dotfiles/config/ranger
+rsync -amP --include='*/' --exclude='.*' ~/.config/zsh/ ~/dotfiles/config/zsh
+
+cp ~/.config/aliasrc ~/dotfiles/config
+cp ~/.config/directories ~/dotfiles/config
+cp ~/.config/files ~/dotfiles/config
+cp ~/.config/inputrc ~/dotfiles/config
+cp ~/.config/shortcutrc ~/dotfiles/config
+cp ~/.config/xinitrc ~/dotfiles/config
+cp ~/.config/xprofile ~/dotfiles/config
+cp ~/.config/dunst/dunstrc ~/dotfiles/config/dunst/
+cp ~/.config/fontconfig/fonts.conf ~/dotfiles/config/fontconfig/
+cp ~/.config/git/config ~/dotfiles/config/git/
+cp ~/.config/i3/config ~/dotfiles/config/i3/
+cp ~/.config/sxhkd/sxhkdrc ~/dotfiles/config/sxhkd/
+cp ~/.config/X11/* ~/dotfiles/config/X11/
+cp ~/.config/zathura/zathurarc ~/dotfiles/config/zathura/
+cp ~/.iex.exs ~/dotfiles/.iex.exs

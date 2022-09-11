@@ -9,6 +9,8 @@
 #
 # If there is already a running instance, user will be prompted to end it.
 
+rofi_command="rofi -theme themes/sidebar.rasi"
+
 updateicon() { \
 	echo "$1" > /tmp/recordingicon
 	pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
@@ -33,13 +35,26 @@ screencast() { \
 	-framerate 60 \
 	-s "$(xdpyinfo | grep dimensions | awk '{print $2;}')" \
 	-i "$DISPLAY" \
-	-f alsa -i default \
+	-f pulse -i default \
 	-r 30 \
  	-c:v h264 -crf 0 -preset ultrafast -c:a aac \
 	"$HOME/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
 	echo $! > /tmp/recordingpid
 	updateicon "⏺️🎙️"
-       	}
+}
+
+windowcast() {
+	ffmpeg -y \
+	-f x11grab \
+	-framerate 60 \
+	-s "$(xdpyinfo | grep dimensions | awk '{print $2;}')" \
+	-i "$DISPLAY" \
+	-r 30 \
+ 	-c:v h264 -crf 0 -preset ultrafast -c:a aac \
+	"$HOME/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
+	echo $! > /tmp/recordingpid
+	updateicon "⏺️🎙️"
+}
 
 video() { ffmpeg \
 	-f x11grab \
@@ -49,7 +64,7 @@ video() { ffmpeg \
 	"$HOME/video-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
 	updateicon "⏺️"
-	}
+}
 
 webcamhidef() { ffmpeg \
 	-f v4l2 \
@@ -58,7 +73,7 @@ webcamhidef() { ffmpeg \
 	"$HOME/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
 	updateicon "🎥"
-	}
+}
 
 webcam() { ffmpeg \
 	-f v4l2 \
@@ -67,7 +82,7 @@ webcam() { ffmpeg \
 	"$HOME/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
 	updateicon "🎥"
-	}
+}
 
 
 audio() { \
@@ -77,10 +92,11 @@ audio() { \
 	"$HOME/audio-$(date '+%y%m%d-%H%M-%S').flac" &
 	echo $! > /tmp/recordingpid
 	updateicon "🎙️"
-	}
+}
 
 askrecording() { \
-	choice=$(printf "screencast\\nvideo\\naudio\\nwebcam\\nwebcam (hi-def)" | dmenu -i -p "Select recording style:")
+  query="Select recording style:"
+	choice=$(printf "screencast\\nvideo\\naudio\\nwebcam\\nwebcam (hi-def)" | dmenu -i -p "$query")
 	case "$choice" in
 		screencast) screencast;;
 		audio) audio;;
@@ -88,16 +104,17 @@ askrecording() { \
 		webcam) webcam;;
 		"webcam (hi-def)") webcamhidef;;
 	esac
-	}
+}
 
 asktoend() { \
 	response=$(printf "No\\nYes" | dmenu -i -p "Recording still active. End recording?") &&
 	[ "$response" = "Yes" ] &&  killrecording
-	}
+}
 
 
 case "$1" in
 	screencast) screencast;;
+  windowcast) windowcast;;
 	audio) audio;;
 	video) video;;
 	kill) killrecording;;
