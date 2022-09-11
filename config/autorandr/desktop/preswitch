@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+MODELINE="173.00 1920 2048 2248 2576 1080 1083 1088 1120 -hsync +vsync"
+
+# xrandr --newmode "1920x1080p" $MODELINE
+
+xrandr --addmode DP-1 "1920x1080p"

@@ -1,38 +1,59 @@
 *.font: Roboto Mono Nerd Font:pixelsize=15:antialias=true:autohint=true;
 rofi.font: RobotoMono Nerd Font Regular 14
 *.alpha: 0.92
-*background: #1E1E2E
-*foreground: #D9E0EE
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
 
-! Gray
-*color0: #6E6C7E
-*color8: #988BA2
+*background:            S_base03
+*foreground:            S_base0
+*fadeColor:             S_base03
+*cursorColor:           S_base1
+*pointerColorBackground:S_base01
+*pointerColorForeground:S_base1
 
-! Red
-*color1: #F28FAD
-*color9: #F28FAD
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
 
-! Green
-*color2: #ABE9B3
-*color10: #ABE9B3
+!! black dark/light
+*color0:                S_base02
+*color8:                S_base03
 
-! Yellow
-*color3: #FAE3B0
-*color11:  #FAE3B0
+!! red dark/light
+*color1:                S_red
+*color9:                S_orange
 
-! Blue
-*color4: #96CDFB
-*color12: #96CDFB
+!! green dark/light
+*color2:                S_green
+*color10:               S_base01
 
-! Maguve
-*color5: #DDB6F2
-*color13: #DDB6F2
+!! yellow dark/light
+*color3:                S_yellow
+*color11:               S_base00
 
-! Pink
-*color6: #F5C2E7
-*color14: #F5C2E7
+!! blue dark/light
+*color4:                S_blue
+*color12:               S_base0
 
-! Whites
-*color7: #C3BAC6
-*color15: #D9E0EE
-Xcursor.size: 16
+!! magenta dark/light
+*color5:                S_magenta
+*color13:               S_violet
+
+!! cyan dark/light
+*color6:                S_cyan
+*color14:               S_base1
+
+!! white dark/light
+*color7:                S_base2
+*color15:               S_base3
