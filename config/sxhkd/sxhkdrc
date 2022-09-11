@@ -77,7 +77,7 @@ Print
 	maim pic-full-$(date '+%y%m%d-%H%M-%S').png
 # Pick screenshot type
 shift + Print
-	maimpick
+	screenshot
 # Record audio or video
 super + Print
 	dmenurecord

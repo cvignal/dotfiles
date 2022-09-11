@@ -1,0 +1,3 @@
+#!/bin/sh
+
+/usr/bin/notify-send -u critical "LOW BATTERY" "Please charge your laptop"

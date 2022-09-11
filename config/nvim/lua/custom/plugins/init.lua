@@ -10,8 +10,6 @@ return {
   },
   ["tpope/vim-markdown"] = {
   },
-  ["elixir-editors/vim-elixir"] = {
-  },
   ["tpope/vim-fugitive"] = {
     cmd = {
       "Git",
@@ -34,6 +32,12 @@ return {
           },
        }
        require("telescope").load_extension "media_files"
+    end,
+  },
+  ["neovim/nvim-lspconfig"] = {
+    config = function()
+      require "plugins.configs.lspconfig"
+      require "custom.plugins.lspconfig"
     end,
   },
 }

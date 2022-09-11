@@ -3,6 +3,7 @@
 
 local M = {}
 local userPlugins = require "custom.plugins"
+local pluginConfs = require "custom.plugins.configs"
 
 M.ui = {
    theme = "catppuccin",
@@ -16,13 +17,10 @@ M.options = {
 }
 
 M.plugins = {
-  options = {
-    lspconfig = {
-      setup_lspconf = "custom.plugins.lspconfig"
-    }
-  },
   override = {
-    ["L3MON4D3/LuaSnip"] = {}
+    ["L3MON4D3/LuaSnip"] = {},
+    ["nvim-treesitter/nvim-treesitter"] = pluginConfs.treesitter,
+    ["NvChad/nvterm"] = pluginConfs.nvterm
   },
   remove = {
     "nathom/filetype.nvim",
