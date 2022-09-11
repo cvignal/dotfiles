@@ -35,7 +35,7 @@ export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
 
 # Other program settings:
 export DICS="/usr/share/stardict/dic/"
-export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
+export SUDO_ASKPASS="$HOME/.local/bin/tools/askpass-rofi"
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export LESS=-R
 export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
@@ -120,3 +120,7 @@ ex=🎯:\
 
 # Switch escape and caps if tty and no passwd required:
 sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null
+
+
+# Added by Toolbox App
+export PATH="$PATH:/home/charles/.local/share/JetBrains/Toolbox/scripts"
