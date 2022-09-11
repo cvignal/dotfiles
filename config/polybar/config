@@ -18,15 +18,15 @@ include-file = $XDG_CONFIG_HOME/polybar/media
 include-file = $XDG_CONFIG_HOME/polybar/i3
 
 [xcolor]
-bg     = ${xrdb:background:#0a0a0a}
-fg     = ${xrdb:foreground:#c8c8c8}
-color1 = ${xrdb:color1:#a54242}
-color2 = ${xrdb:color2:#8c9440}
-color3 = ${xrdb:color3:#de935f}
-color4 = ${xrdb:color4:#5f819d}
-color5 = ${xrdb:color5:#85678f}
-color6 = ${xrdb:color6:#5e8d87}
-color8 = ${xrdb:color8:#373b41}
+bg     = ${xrdb:background:#002b36}
+fg     = ${xrdb:foreground:#839496}
+color1 = ${xrdb:color1:#dc322f}
+color2 = ${xrdb:color2:#859900}
+color3 = ${xrdb:color3:#b58900}
+color4 = ${xrdb:color4:#268bd2}
+color5 = ${xrdb:color5:#d33682}
+color6 = ${xrdb:color6:#2aa198}
+color8 = ${xrdb:color8:#002b36}
 
 darkred     = ${xrdb:color1}
 red         = ${xrdb:color9}
@@ -45,7 +45,7 @@ darkcyan    = ${xrdb:color6}
 cyan        = ${xrdb:color13}
 
 [color]
-base-bg     = #32302f
+base-bg     = #073642
 ;glyph-bg    = #de0a0a0a
 glyph-bg   = #fa0a0a0a
 module-bg   = #fa0a0a0a
@@ -54,7 +54,7 @@ selected-bg = #dc1a1a1a
 text-fg = ${xcolor.white}
 icon-fg = ${xcolor.magenta}
 bar-fg  = ${xcolor.darkmagenta}
-warn-fg = #821717
+warn-fg = #dc322f
 
 
 [layout]
