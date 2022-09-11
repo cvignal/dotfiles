@@ -1,0 +1,5 @@
+#!/bin/sh
+
+~/.config/polybar/launch.sh
+~/.local/bin/tools/setbg
+setxkbmap -option altwin:swap_alt_win
