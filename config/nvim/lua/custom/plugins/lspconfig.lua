@@ -12,7 +12,7 @@ for _, lsp in ipairs(servers) do
 end
 
 lspconfig.elixirls.setup {
-  cmd = { "/home/charles/.local/share/nvim/mason/bin/elixir-ls" },
+  cmd = { "/home/cvignal/.local/share/nvim/mason/bin/elixir-ls" },
   on_attach = on_attach,
   capabilities = capabilities,
 }

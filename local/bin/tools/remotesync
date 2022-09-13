@@ -6,17 +6,17 @@ rsync -amP --include='*/' ~/dotfiles/config/rofi ~/.config/rofi/
 rsync -amP --include='*/' ~/dotfiles/config/ranger ~/.config/ranger/
 rsync -amP --include='*/' --exclude='.*' ~/dotfiles/config/zsh ~/.config/zsh/
 
-cp ~/.config/aliasrc ~/dotfiles/config
-cp ~/.config/directories ~/dotfiles/config
-cp ~/.config/files ~/dotfiles/config
-cp ~/.config/inputrc ~/dotfiles/config
-cp ~/.config/shortcutrc ~/dotfiles/config
-cp ~/.config/xinitrc ~/dotfiles/config
-cp ~/.config/xprofile ~/dotfiles/config
-cp ~/.config/dunst/dunstrc ~/dotfiles/config/dunst/
-cp ~/.config/fontconfig/fonts.conf ~/dotfiles/config/fontconfig/
-cp ~/.config/git/config ~/dotfiles/config/git/
-cp ~/.config/i3/config ~/dotfiles/config/i3/
-cp ~/.config/sxhkd/sxhkdrc ~/dotfiles/config/sxhkd/
-cp ~/.config/X11/* ~/dotfiles/config/X11/
-cp ~/.config/zathura/zathurarc ~/dotfiles/config/zathura/
+cp ~/dotfiles/config/aliasrc ~/.config/aliasrc
+cp ~/dotfiles/config/directories ~/.config/directories
+cp ~/dotfiles/config/files ~/.config/files
+cp ~/dotfiles/config/inputrc ~/.config/inputrc
+cp ~/dotfiles/config/shortcutrc ~/.config/shortcutrc
+cp ~/dotfiles/config/xinitrc ~/.config/xinitrc
+cp ~/dotfiles/config/xprofile ~/.config/xprofile
+cp ~/dotfiles/config/dunst/dunstrc ~/.config/dunst/dunstrc
+cp ~/dotfiles/config/fontconfig/fonts.conf ~/.config/fontconfig/fonts.conf
+cp ~/dotfiles/config/git/config ~/.config/git/config
+cp ~/dotfiles/config/i3/config ~/.config/i3/config
+cp ~/dotfiles/config/sxhkd/sxhkdrc ~/.config/sxhkd/sxhkdrc
+cp ~/dotfiles/config/X11/* ~/.config/X11/
+cp ~/dotfiles/config/zathura/* ~/.config/zathura/

@@ -1,5 +1,5 @@
-*.font: Roboto Mono Nerd Font:pixelsize=15:antialias=true:autohint=true;
-rofi.font: RobotoMono Nerd Font Regular 14
+*.font: JetBrains Mono Nerd Font:pixelsize=15:antialias=true:autohint=true;
+rofi.font: JetBrains Mono Nerd Font 10
 *.alpha: 0.92
 #define S_base03        #002b36
 #define S_base02        #073642

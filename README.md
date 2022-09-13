@@ -8,9 +8,9 @@ Git repository containing most of my dotfiles for Linux/GNU OS
 </details>
 
 <details>
-  <summary>System information</summary>
+  <summary>Terminal based apps</summary>
   
-![neofetch](img/neofetch.png)
+![Terminal based apps](img/tui.png)
 </details>
 
 <details>
@@ -20,31 +20,26 @@ Git repository containing most of my dotfiles for Linux/GNU OS
 </details>
 
 <details>
-  <summary>Monitoring</summary>
+  <summary>Nvim</summary>
   
-![Other apps](img/monitoring.png)
+![Nvim](img/nvim.png)
 </details>
 
 <details>
-  <summary>Nvim and Zathura</summary>
+  <summary>File manager and zathura</summary>
   
-![Nvim and zathura](img/nvim_zathura.png)
+![lf and zathura](img/lf_zathura.png)
 </details>
 
 <details>
-  <summary>Rofi appmenu</summary>
+  <summary>Launcher</summary>
   
-![appsmenu](img/rofi.png)
+![appsmenu](img/appsmenu.png)
 </details>
 
 <details>
-  <summary>Rofi powermenu</summary>
+  <summary>Powermenu</summary>
   
-![powermenu](img/rofi_bis.png)
+![powermenu](img/powermenu.png)
 </details>
 
-<details>
-  <summary>Lockscreen</summary>
-  
-![powermenu](img/lockscreen.png)
-</details>

@@ -40,7 +40,7 @@ super + shift + x
 super + shift + BackSpace
 	prompt "Reboot computer?" "sudo -A shutdown -r now"
 super + x
-	lock
+	dm-tool lock
 XF86Launch1
 	xset dpms force off
 XF86AudioMute

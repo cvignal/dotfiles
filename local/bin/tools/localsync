@@ -3,7 +3,7 @@
 rsync -amP --include='*.lua' --include='*/' --exclude='*' ~/.config/nvim/lua/custom/ ~/dotfiles/config/nvim/lua/custom
 rsync -amP --include='*/' ~/.config/polybar/ ~/dotfiles/config/polybar
 rsync -amP --include='*/' ~/.config/rofi/ ~/dotfiles/config/rofi
-rsync -amP --include='*/' ~/.config/ranger/ ~/dotfiles/config/ranger
+rsync -amP --include='*/' ~/.config/lf/ ~/dotfiles/config/lf
 rsync -amP --include='*/' --exclude='.*' ~/.config/zsh/ ~/dotfiles/config/zsh
 
 cp ~/.config/aliasrc ~/dotfiles/config
@@ -18,6 +18,8 @@ cp ~/.config/fontconfig/fonts.conf ~/dotfiles/config/fontconfig/
 cp ~/.config/git/config ~/dotfiles/config/git/
 cp ~/.config/i3/config ~/dotfiles/config/i3/
 cp ~/.config/sxhkd/sxhkdrc ~/dotfiles/config/sxhkd/
-cp ~/.config/X11/* ~/dotfiles/config/X11/
+cp ~/.config/X11/Xresources ~/dotfiles/config/X11/
 cp ~/.config/zathura/zathurarc ~/dotfiles/config/zathura/
 cp ~/.iex.exs ~/dotfiles/.iex.exs
+
+rsync -amP --include='*/' ~/.local/bin/ ~/dotfiles/local/bin

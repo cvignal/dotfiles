@@ -284,23 +284,22 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#222222"
-    foreground = "#888888"
+    background = "#002b36"
+    foreground = "#586e75"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     icon = /usr/share/icons/Adwaita/16x16/status:/usr/share/icons/Adwaita/16x16/devices
 
 [urgency_normal]
-    background = "#285577"
+    background = "#2aa198"
     foreground = "#ffffff"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     icon = /usr/share/icons/Adwaita/16x16/status:/usr/share/icons/Adwaita/16x16/devices
 
 [urgency_critical]
-    background = "#900000"
+    background = "#dc322f"
     foreground = "#ffffff"
-    frame_color = "#ff0000"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
     icon = /usr/share/icons/Adwaita/16x16/status:/usr/share/icons/Adwaita/16x16/devices
