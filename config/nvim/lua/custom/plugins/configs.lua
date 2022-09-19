@@ -27,4 +27,12 @@ M.nvterm = {
   },
 }
 
+M.mason = {
+  ensure_installed = {
+    "lua-language-server",
+    "css-lsp",
+    "html-lsp",
+    "elixir-ls"
+  }
+}
 return M

@@ -2,12 +2,10 @@
 -- lua/custom/chadrc.lua
 
 local M = {}
-local userPlugins = require "custom.plugins"
-local pluginConfs = require "custom.plugins.configs"
 
 M.ui = {
    theme = "solarized_dark",
-   transparency = false
+   transparency = true
 }
 
 M.options = {
@@ -16,16 +14,6 @@ M.options = {
   end,
 }
 
-M.plugins = {
-  override = {
-    ["L3MON4D3/LuaSnip"] = {},
-    ["nvim-treesitter/nvim-treesitter"] = pluginConfs.treesitter,
-    ["NvChad/nvterm"] = pluginConfs.nvterm
-  },
-  remove = {
-    "nathom/filetype.nvim",
-  },
-  user = userPlugins
-}
+M.plugins = require "custom.plugins"
 
 return M
