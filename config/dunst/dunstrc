@@ -291,7 +291,7 @@
     icon = /usr/share/icons/Adwaita/16x16/status:/usr/share/icons/Adwaita/16x16/devices
 
 [urgency_normal]
-    background = "#2aa198"
+    background = "#268bd2"
     foreground = "#ffffff"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable

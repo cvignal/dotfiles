@@ -1,4 +1,15 @@
+local configs = require "custom.plugins.configs"
+
 return {
+  ["NvChad/nvterm"] = {
+    override_options = configs.nvterm
+  },
+  ["nvim-treesitter/nvim-treesitter"] = {
+    override_options = configs.treesitter,
+  },
+  ["williamboman/mason.nvim"] = {
+    override_options = configs.mason,
+  },
   ["goolord/alpha-nvim"] = {
     disable = false,
     config = function ()
@@ -8,8 +19,7 @@ return {
   ["kylef/apiblueprint.vim"] = {
     ft = { "apiblueprint" }
   },
-  ["tpope/vim-markdown"] = {
-  },
+  ["tpope/vim-markdown"] = {},
   ["tpope/vim-fugitive"] = {
     cmd = {
       "Git",
@@ -40,4 +50,5 @@ return {
       require "custom.plugins.lspconfig"
     end,
   },
+  ["nathom/filetype.nvim"] = false,
 }
