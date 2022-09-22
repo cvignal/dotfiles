@@ -12,9 +12,9 @@ source colors.sh
 bluetooth_speaker() {
 	SPEAKER_CONNECTED=$(bt-device -i 4C:87:5D:FC:1C:0D | grep Connected | xargs | cut -d ' ' -f 2)
 	if [ "$SPEAKER_CONNECTED" -eq 1 ]; then
-		speaker_indicator="${faded_green}${RESET}"
+		speaker_indicator="${faded_green}${RESET}"
 	else
-		speaker_indicator="${dark0_soft}${RESET}"
+		speaker_indicator="${dark0_soft}${RESET}"
 	fi
 	echo $speaker_indicator
 }
