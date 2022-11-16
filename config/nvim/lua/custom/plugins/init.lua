@@ -16,8 +16,11 @@ return {
       require "custom.plugins.alpha"
     end
   },
-  ["kylef/apiblueprint.vim"] = {
-    ft = { "apiblueprint" }
+  ["folke/todo-comments.nvim"] = {
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup {}
+    end
   },
   ["iamcco/markdown-preview.nvim"] = {
     run = "cd app && npm install",

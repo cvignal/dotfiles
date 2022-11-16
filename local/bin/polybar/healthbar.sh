@@ -79,14 +79,11 @@ healthbar_print() {
 	else
 		hp="$faded_redﯜ $RESET$dark0_soft  $RESET"
 	fi
-    echo $hp
-
-	# if [ "$ac" -eq 1 ]; then
-	# 	echo "$dark0_soft[$faded_yellow$dark0_soft]$RESET $battery_percent"
-	# else
-	# 	echo " $battery_percent"
-	# fi
-
+	if [ "$ac" -eq 1 ]; then
+		echo "$dark0_soft[$faded_yellow$dark0_soft]$RESET $hp"
+	else
+		echo " $hp"
+	fi
 	# if [ "$battery_percent" -gt 25 ]; then
 	# 	battery_color="$faded_green"
 	# elif [ "$battery_percent" -gt 10 ]; then

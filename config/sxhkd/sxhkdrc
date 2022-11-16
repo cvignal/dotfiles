@@ -12,7 +12,7 @@ super + m
 super + n
 	$TERMINAL -e newsboat
 super + i
-	$TERMINAL -e ytop
+	$TERMINAL -e btm
 super + y
 	$TERMINAL -e calcurse
 super + shift + a
