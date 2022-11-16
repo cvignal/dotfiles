@@ -189,7 +189,6 @@ bindsym $mod+Shift+0	move container to workspace $ws10
 
 for_window [class="Pinentry"] sticky enable
 for_window [class="sent"] border pixel 0px
-for_window [title="GIMP Startup"] move workspace $ws5
 for_window [class="Gimp"] move workspace $ws5
 for_window [window_role="GtkFileChooserDialog"] resize set 800 600
 for_window [window_role="GtkFileChooserDialog"] move position center
@@ -243,6 +242,7 @@ workspace $ws10 output "DP-2"
 
 exec_always --no-startup-id autorandr --change
 exec_always --no-startup-id dunst
+exec_always --no-startup-ip sudo ipsec restart
 
 exec_always --no-startup-id blueman-applet
 exec_always  --no-startup-id "setxkbmap -option 'grp:alt_shift_toggle' -layout us,fr"
