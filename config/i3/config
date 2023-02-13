@@ -227,7 +227,7 @@ bindsym $mod+Shift+minus	exec --no-startup-id pulsemixer --change-volume -15
 
 
 workspace $ws1 output "HDMI-1"
-workspace $ws2 output "HMDI-1"
+workspace $ws2 output "HDMI-1"
 workspace $ws3 output "DP-2"
 workspace $ws4 output "HDMI-1"
 workspace $ws5 output "DP-2"

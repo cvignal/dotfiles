@@ -35,4 +35,11 @@ M.mason = {
     "elixir-ls"
   }
 }
+
+M.nvimtree = {
+  view = {
+    preserve_window_proportions = true
+  }
+}
+
 return M

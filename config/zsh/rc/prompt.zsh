@@ -40,11 +40,21 @@ common_bg_jobs() {
   echo -n $bg_status
 }
 
+# Virtual env
+common_virtualenv() {
+  if [[ -n "$VIRTUAL_ENV" ]] ; then
+    virtual_env="($(basename $VIRTUAL_ENV)) "
+  else
+    virtual_env=""
+  fi
+  echo -n $virtual_env
+}
+
 _vbe_setprompt () {
     setopt prompt_subst
     if [[ $COLUMNS -gt 50 ]] ; then
-      PROMPT="$(common_host)$(common_current_dir)$(common_bg_jobs)$(common_return_status)"
+      PROMPT="$(common_virtualenv)$(common_host)$(common_current_dir)$(common_bg_jobs)$(common_return_status)"
     else
-      PROMPT="$(common_current_dir)$(common_bg_jobs)$(common_return_status)"
+      PROMPT="$(common_virtualenv)$(common_current_dir)$(common_bg_jobs)$(common_return_status)"
     fi
 }

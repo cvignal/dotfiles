@@ -10,6 +10,9 @@ return {
   ["williamboman/mason.nvim"] = {
     override_options = configs.mason,
   },
+  ["kyazdani42/nvim-tree.lua"] = {
+    override_options = configs.nvimtree,
+  },
   ["goolord/alpha-nvim"] = {
     disable = false,
     config = function ()
