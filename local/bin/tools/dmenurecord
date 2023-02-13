@@ -114,7 +114,7 @@ asktoend() { \
 
 case "$1" in
 	screencast) screencast;;
-  windowcast) windowcast;;
+    windowcast) windowcast;;
 	audio) audio;;
 	video) video;;
 	kill) killrecording;;
