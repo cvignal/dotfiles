@@ -13,18 +13,24 @@ M.treesitter = {
     "markdown_inline",
     "go",
     "terraform",
+    "elixir",
   },
   indent = {
     enable = true,
     disable = {
       "python",
+      "yaml",
     },
   },
   highlight = {
     enable = true,
     use_languagetree = true,
+  },
+  incremental_selection = {
+    enable = true,
     disable = { "yaml" },
   },
+  additional_vim_regex_highlighting = false,
 }
 
 M.mason = {

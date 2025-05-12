@@ -8,26 +8,31 @@ M.base46 = {
 }
 
 M.ui = {
-  nvdash = {
-    load_on_startup = true,
+  statusline = {
+    theme = "minimal",
+    separator_style = "block",
+  },
+}
 
-    header = {
-      " ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
-      " ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
-      " ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
-      " ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
-      " ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
-      " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
-    },
+M.nvdash = {
+  load_on_startup = true,
 
-    buttons = {
-      { "  Find File", "Spc f f", "Telescope find_files" },
-      { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
-      { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
-      { "  Bookmarks", "Spc m a", "Telescope marks" },
-      { "  Themes", "Spc t h", "Telescope themes" },
-      { "  Mappings", "Spc c h", "NvCheatsheet" },
-    },
+  header = {
+    " ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
+    " ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
+    " ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
+    " ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
+    " ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
+    " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
+  },
+
+  buttons = {
+    { txt = "  Find File", keys = "Spc f f", cmd = "Telescope find_files" },
+    { txt = "󰈚  Recent Files", keys = "Spc f o", cmd = "Telescope oldfiles" },
+    { txt = "󰈭  Find Word", keys = "Spc f w", cmd = "Telescope live_grep" },
+    { txt = "  Bookmarks", keys = "Spc m a", cmd = "Telescope marks" },
+    { txt = "  Themes", keys = "Spc t h", cmd = "Telescope themes" },
+    { txt = "  Mappings", keys = "Spc c h", cmd = "NvCheatsheet" },
   },
 }
 

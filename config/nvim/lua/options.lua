@@ -23,6 +23,7 @@ o.so = 7
 o.undodir = tostring(os.getenv "HOME") .. "/.cache/nvim/undodir"
 o.undofile = true
 o.foldmethod = "indent"
+-- o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 o.foldlevelstart = 20
 
 o.mouse = ""

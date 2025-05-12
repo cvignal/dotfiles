@@ -20,13 +20,13 @@ map("n", "<leader>Df", "<cmd>DBUIFindBuffer<Cr>", { desc = "Database: Find buffe
 map("n", "<leader>Dr", "<cmd>DBUIRenameBuffer<Cr>", { desc = "Database: Rename buffer" })
 map("n", "<leader>Dr", "<cmd>DBUILastQueryInfo<Cr>", { desc = "Database: Last query info" })
 
--- M.dap = {
---   n = {
---     ["<leader>dk"] = { "<cmd>lua require 'dap'.continue()<cr>", "DAP continue" },
---     ["<leader>dj"] = { "<cmd>lua require 'dap'.step_over()<cr>", "DAP step over" },
---     ["<leader>dh"] = { "<cmd>lua require 'dap'.step_into()<cr>", "DAP step into" },
---     ["<leader>dl"] = { "<cmd>lua require 'dap'.step_out()<cr>", "DAP step out" },
---     ["<leader>b"] = { "<cmd>lua require 'dap'.toggle_breakpoint()<cr>", "DAP toggle breakpoint" },
---     ["<leader>dp"] = { "<cmd>lua require 'dap'.run_last()<cr>", "DAP run last" },
---   },
--- }
+-- gitsigns
+map("n", "<leader>gb", "<cmd>Gitsigns toggle_current_line_blame<Cr>", { desc = "Toggle current line git blame" })
+
+-- DAP
+map("n", "<leader>dk", "<cmd>lua require 'dap'.continue()<cr>", { desc = "DAP continue" })
+map("n", "<leader>dj", "<cmd>lua require 'dap'.step_over()<cr>", { desc = "DAP step over" })
+map("n", "<leader>dh", "<cmd>lua require 'dap'.step_into()<cr>", { desc = "DAP step into" })
+map("n", "<leader>dl", "<cmd>lua require 'dap'.step_out()<cr>", { desc = "DAP step out" })
+map("n", "<leader>b", "<cmd>lua require 'dap'.toggle_breakpoint()<cr>", { desc = "DAP toggle breakpoint" })
+map("n", "<leader>dp", "<cmd>lua require 'dap'.run_last()<cr>", { desc = "DAP run last" })
