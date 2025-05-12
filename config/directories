@@ -10,7 +10,4 @@ cac ${XDG_CACHE_HOME:-$HOME/.cache}
 lb 	~/.local/bin
 src ~/.local/src
 mn	/mnt
-rrg ~/work/rrg
-lv  ~/work/lv
-dom ~/work/dom/
-iam ~/work/iam/
+nvf	${XDG_CONFIG_HOME:-$HOME/.config}/nvim/lua
