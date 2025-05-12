@@ -1,13 +1,6 @@
 #!/usr/bin/env sh
 
 # Colorize commands when possible.
-alias \
-	ls="ls -hN --color=auto --group-directories-first" \
-  lls="logo-ls" \
-	grep="grep --color=auto" \
-	diff="diff --color=auto" \
-	ccat="highlight --out-format=ansi"
-
 alias ka="killall" \
 	mkd="mkdir -pv" \
 	calcurse="calcurse -D ~/.config/calcurse" \
@@ -21,7 +14,7 @@ alias ka="killall" \
 	x="sxiv -ft *" \
 	sdn="sudo shutdown -h now" \
 	gua="git remote | xargs -L1 git push --all" \
-	ls="ls -hN --color=auto --group-directories-first" \
+	ls="gls -hN --color=auto --group-directories-first" \
         ll="ls -l" \
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
@@ -35,19 +28,15 @@ alias ka="killall" \
 	ffmpeg="ffmpeg -hide_banner" \
     la="ls -la" \
     gcl="git clone" \
-    start_endpoint="cd ~/work/endpoint/endpoints && python3 -m http.server 8000" \
-    kbrw_tunnel="bash /home/charles/work/endpoint/bin/tunnels-start.sh cvignal qa" \
-    sudo='sudo -A' \
-    infra-cli='cd ~/work/chef-repo/tools/ && ./infra-cli' \
     wifiscan='nmcli device wifi list --rescan yes' \
-    zpm='cd ~/work/zpm && java -jar release/1.6_no_rest_version/zpm.jar' \
-    sshr='ssh -J access01.cloud.kbrwadventure.com' \
     ssh='TERM=xterm-256color ssh' \
     pingc='ping -c 5' \
-    kbrw_proxy='ssh -N -D 1111 cvignal@access01.cloud.kbrwadventure.com&' \
-    services='cd services/' \
-    admin='cd admin/' \
-    picker='cd picker/'
+    restart_cluster='k3d cluster delete && start_cluster' \
+    kube='kubectl' \
+    tf='terraform' \
+    vdb='v -c "DBUIToggle"'
+
+
 
 # Use neovim for vim if present.
 command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d" # Use neovim for vim if present.
