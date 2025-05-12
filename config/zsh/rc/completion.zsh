@@ -1,6 +1,6 @@
 # -*- sh -*-
 autoload -U zutil
-
+autoload -U +X bashcompinit && bashcompinit
 autoload compinit && {
     autoload -U complist
     compinit -i -d $ZSH/run/u/$HOST-$UID/zcompdump
@@ -38,4 +38,4 @@ zstyle ':completion:*:*:git-pull:argument-1:' tag-order '!remote-repositories'
 zmodload -i zsh/complist
 bindkey -M menuselect "+" accept-and-menu-complete
 
-source /opt/asdf-vm/asdf.sh
+complete -C '/usr/local/bin/aws_completer' aws

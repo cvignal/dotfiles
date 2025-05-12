@@ -1,17 +1,32 @@
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
+autoload -U add-zsh-hook
 
 # Load aliases and shortcuts if existent.
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc"
 
-export PATH=$PATH:$HOME/.local/share/cargo/bin:$HOME/work/simple_ha_state/:/opt/android-sdk/platform-tools/
-export KNIFE_HOME=$HOME/work/chef-repo/.chef
-export CHEF_USER="cvignal"
-
 () {
     for config_file (${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/rc/*.zsh) source $config_file
     [ ! -e $ZDOTDIR/env ] || . $ZSH/env
 }
+
+() {
+    for completion_file (${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/completion/*-completion) source $completion_file
+    [ ! -e $ZDOTDIR/env ] || . $ZSH/env
+}
+
+if whence gdircolors >/dev/null; then
+  eval "$(gdircolors -b)"
+  zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+else
+  export CLICOLOR=1
+  zstyle ':completion:*:default' list-colors ''
+fi
+
+export ASDF_DATA_DIR="$HOME/.local/share/asdf"
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
+export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+export PATH="$PATH:$(go env GOPATH)/bin:$HOME/.cargo/bin/:/opt/homebrew/opt/openjdk/bin"
 
 add-zsh-hook precmd _vbe_setprompt
