@@ -1,6 +1,24 @@
 local overrides = require "configs.overrides"
 
 return {
+  "nvim-lua/plenary.nvim",
+
+  {
+    "nvchad/ui",
+    config = function()
+      require "nvchad"
+    end,
+  },
+
+  {
+    "nvchad/base46",
+    lazy = true,
+    build = function()
+      require("base46").load_all_highlights()
+    end,
+  },
+
+  "nvchad/volt", -- optional, needed for theme switcher
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -28,7 +46,7 @@ return {
     },
   },
 
-  -- overrde plugin configs
+  -- override plugin configs
   {
     "nvim-treesitter/nvim-treesitter",
     opts = overrides.treesitter,
@@ -38,6 +56,13 @@ return {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
+  {
+    "lewis6991/gitsigns.nvim",
+    event = "User FilePost",
+    config = function()
+      require("configs.gitsigns").setup()
+    end,
+  },
 
   -- Install a plugin
   {
@@ -46,17 +71,6 @@ return {
     config = function()
       require("better_escape").setup()
     end,
-  },
-  {
-    "tpope/vim-fugitive",
-    cmd = {
-      "Git",
-      "Gdiff",
-      "Gdiffsplit",
-      "Gvdiffsplit",
-      "Gwrite",
-      "Gw",
-    },
   },
   {
     "tpope/vim-dadbod",
@@ -90,6 +104,13 @@ return {
             mode = "remote",
             request = "attach",
           },
+          {
+            type = "go",
+            name = "Debug (Build Flags)",
+            request = "launch",
+            program = "${file}",
+            buildFlags = require("dap-go").get_build_flags,
+          },
         },
         -- delve configurations
         delve = {
@@ -111,7 +132,7 @@ return {
           -- compiled during debugging, for example.
           -- passing build flags using args is ineffective, as those are
           -- ignored by delve in dap mode.
-          build_flags = "",
+          build_flags = "-tags=integration,e2e",
         },
       }
     end,
@@ -186,17 +207,17 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "canary",
     dependencies = {
       { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
       { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
     },
+    branch = "main",
     opts = {
       debug = true, -- Enable debugging
+      model = "claude-3.7-sonnet",
       -- See Configuration section for rest
     },
-    lazy = false,
-    -- See Commands section for default commands if you want to lazy load on them
+    event = "InsertEnter",
   },
   {
     "pwntester/octo.nvim",

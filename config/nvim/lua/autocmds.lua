@@ -1,6 +1,6 @@
 require "nvchad.autocmds"
--- Don't show any numbers inside terminals
 local autocmd = vim.api.nvim_create_autocmd
+-- Don't show any numbers inside terminals
 
 autocmd("TermOpen", {
   pattern = "term://*",
@@ -9,10 +9,16 @@ autocmd("TermOpen", {
 
 -- Open a file from its last left off position
 autocmd("BufReadPost", {
+  pattern = "*",
   callback = function()
-    if not vim.fn.expand("%:p"):match ".git" and vim.fn.line "'\"" > 1 and vim.fn.line "'\"" <= vim.fn.line "$" then
-      vim.cmd "normal! g'\""
-      vim.cmd "normal zz"
+    local line = vim.fn.line "'\""
+    if
+      line > 1
+      and line <= vim.fn.line "$"
+      and vim.bo.filetype ~= "commit"
+      and vim.fn.index({ "xxd", "gitrebase" }, vim.bo.filetype) == -1
+    then
+      vim.cmd 'normal! g`"'
     end
   end,
 })
@@ -102,4 +108,19 @@ autocmd("BufNewFile", {
 autocmd("BufRead", {
   pattern = "*.tfvars",
   command = "setfiletype terraform",
+})
+
+autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client == nil then
+      return
+    end
+    if client.name == "ruff" then
+      -- Disable hover in favor of Pyright
+      client.server_capabilities.hoverProvider = false
+    end
+  end,
+  desc = "LSP: Disable hover capability from Ruff",
 })
