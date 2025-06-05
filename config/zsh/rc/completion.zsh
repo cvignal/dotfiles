@@ -38,4 +38,4 @@ zstyle ':completion:*:*:git-pull:argument-1:' tag-order '!remote-repositories'
 zmodload -i zsh/complist
 bindkey -M menuselect "+" accept-and-menu-complete
 
-complete -C '/usr/local/bin/aws_completer' aws
+compdef _bazel bzl
