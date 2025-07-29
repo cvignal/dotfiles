@@ -10,10 +10,14 @@
   --tabs-bg-hover: #3b3948 !important;
   --tabs-activated-bg: #5b5b66 !important;
   --nav-btn-activated-bg: #1f222f !important;
+  --tabs-font: 10pt FantasqueSansM Nerd Font;
+  --tabs-count-font: 0.625rem FantasqueSansM Nerd Font;
+  --bookmarks-bookmark-font: 0.875rem FantasqueSansM Nerd Font;
+  --bookmarks-folder-font: 10pt FantasqueSansM Nerd Font;
 }
 
 #root .Tab {
- --tabs-indent: 7px;
+  --tabs-indent: 7px;
 }
 
 /* TABS */
@@ -23,7 +27,7 @@
 }
 
 .Tab {
-margin: auto;
+  margin: auto;
   width: 94%;
   border-radius: 3px;
 }
@@ -39,7 +43,6 @@ margin: auto;
   overflow: hidden !important;
 }
 
-
 /* PINNED TABS */
 
 .PinnedDock {
@@ -51,13 +54,12 @@ margin: auto;
   border-radius: 3px;
 }
 
-
 /* NAV BAR */
 
 .NavigationBar {
   height: 41px !important;
   padding: 4.5px 0px 0px 4.5px !important;
-  background-color: #2B2A33 !important;
+  background-color: #2b2a33 !important;
   margin-bottom: 5px;
 }
 
@@ -81,7 +83,6 @@ margin: auto;
   fill: #f2f2f2 !important;
 }
 
-
 /* SIDEBAR HACK PATCHES */
 
 @media (max-width: 50px) {
@@ -93,7 +94,7 @@ margin: auto;
   .Tab[data-lvl] > div.lvl-wrapper {
     right: -2px;
   }
-  
+
   .Tab {
     max-width: 34px;
   }
@@ -121,15 +122,14 @@ margin: auto;
   }
 }
 
-
 /* OPTIONS */
 
 /* Disable these two snippets below to make pinned tabs wrap when minimised */
 .PinnedDock {
-  flex-wrap: nowrap! important;
+  flex-wrap: nowrap !important;
 }
 
 .PinnedTab {
-  overflow: hidden !important; 
+  overflow: hidden !important;
   min-width: var(--tabs-pinned-width) !important;
 }
