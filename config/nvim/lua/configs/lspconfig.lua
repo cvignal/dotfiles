@@ -16,6 +16,7 @@ local servers = {
 	"terraformls",
 	"elixirls",
 	"ruff",
+	"bzl",
 }
 
 local function settings_lsp(lsp)
