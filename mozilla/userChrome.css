@@ -76,7 +76,7 @@ See the above repository for updates as well as full license text. */
   will-change: min-width;
 }
 
-#sidebar-box:hover > #sidebar {
+#sidebar-box:hover > .sidebar-browser-stack > #sidebar {
   min-width: var(--uc-sidebar-hover-width) !important;
   transition-delay: 0ms !important;
 }
@@ -115,4 +115,3 @@ See the above repository for updates as well as full license text. */
   margin-inline: 0px !important;
   border-left-style: solid !important;
 }
-
