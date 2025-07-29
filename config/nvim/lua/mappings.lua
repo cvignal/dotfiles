@@ -1,13 +1,13 @@
-require "nvchad.mappings"
+require("nvchad.mappings")
 
 local map = vim.keymap.set
 
 -- TODO comments
 map("n", "]t", function()
-  require("todo-comments").jump_next()
+	require("todo-comments").jump_next()
 end)
 map("n", "[t", function()
-  require("todo-comments").jump_prev()
+	require("todo-comments").jump_prev()
 end)
 
 -- Diagnostics
@@ -30,3 +30,8 @@ map("n", "<leader>dh", "<cmd>lua require 'dap'.step_into()<cr>", { desc = "DAP s
 map("n", "<leader>dl", "<cmd>lua require 'dap'.step_out()<cr>", { desc = "DAP step out" })
 map("n", "<leader>b", "<cmd>lua require 'dap'.toggle_breakpoint()<cr>", { desc = "DAP toggle breakpoint" })
 map("n", "<leader>dp", "<cmd>lua require 'dap'.run_last()<cr>", { desc = "DAP run last" })
+
+-- LSP
+map("n", "grr", function()
+	vim.lsp.buf.references(nil, { loclist = true })
+end, { desc = "LSP references (location list)" })

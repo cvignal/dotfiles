@@ -29,30 +29,6 @@ return {
 	{
 		"mason-org/mason.nvim",
 	},
-	{
-		"mason-org/mason-lspconfig.nvim",
-		opts = {
-			ensure_installed = {
-				-- lua stuff
-				"lua_ls",
-
-				-- web dev stuff
-				"css-lsp",
-				"html-lsp",
-				"ts_ls",
-				"gopls",
-				"goimports",
-				"deno",
-				"gopls",
-				"golangci_lint_ls",
-			},
-		},
-		dependencies = {
-			{ "mason-org/mason.nvim", opts = {} },
-			"neovim/nvim-lspconfig",
-		},
-		lazy = false,
-	},
 
 	-- override plugin configs
 	{
@@ -62,7 +38,9 @@ return {
 
 	{
 		"nvim-tree/nvim-tree.lua",
-		opts = overrides.nvimtree,
+		config = function()
+			require("configs.nvim-tree").setup()
+		end,
 	},
 	{
 		"lewis6991/gitsigns.nvim",
@@ -188,24 +166,11 @@ return {
 		end,
 	},
 	{
-		"zbirenbaum/copilot.lua",
-		event = "InsertEnter",
-		opts = overrides.copilot,
-	},
-	{
 		"hrsh7th/nvim-cmp",
-		dependencies = {
-			{
-				"zbirenbaum/copilot-cmp",
-				config = function()
-					require("copilot_cmp").setup()
-				end,
-			},
-		},
 		opts = {
 			sources = {
 				{ name = "nvim_lsp", group_index = 2 },
-				{ name = "copilot", group_index = 2 },
+				{ name = "codeium", group_index = 2 },
 				{ name = "luasnip", group_index = 2 },
 				{ name = "buffer", group_index = 2 },
 				{ name = "nvim_lua", group_index = 2 },
@@ -214,17 +179,36 @@ return {
 		},
 	},
 	{
-		"CopilotC-Nvim/CopilotChat.nvim",
+		"tpope/vim-fugitive",
+		lazy = false,
+	},
+	{
+		"Exafunction/windsurf.nvim",
 		dependencies = {
-			{ "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
-			{ "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+			"nvim-lua/plenary.nvim",
+			"hrsh7th/nvim-cmp",
 		},
-		branch = "main",
-		opts = {
-			debug = true, -- Enable debugging
-			model = "claude-3.7-sonnet",
-			-- See Configuration section for rest
+		config = function()
+			require("codeium").setup({})
+		end,
+	},
+	{
+		"kdheepak/lazygit.nvim",
+		cmd = {
+			"LazyGit",
+			"LazyGitConfig",
+			"LazyGitCurrentFile",
+			"LazyGitFilter",
+			"LazyGitFilterCurrentFile",
 		},
-		event = "InsertEnter",
+		-- optional for floating window border decoration
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		-- setting the keybinding for LazyGit with 'keys' is recommended in
+		-- order to load the plugin when the command is run for the first time
+		keys = {
+			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+		},
 	},
 }
