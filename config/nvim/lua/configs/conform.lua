@@ -14,6 +14,11 @@ local options = {
 
 		-- sh = { "shfmt" },
 		go = { "goimports", "gofmt" },
+		rust = { "rustfmt" },
+		elixir = { "mix" },
+		eelixir = { "mix" },
+		heex = { "mix" },
+		surface = { "mix" },
 	},
 
 	-- adding same formatter for multiple filetypes can look too much work for some

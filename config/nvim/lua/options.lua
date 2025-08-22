@@ -28,3 +28,8 @@ o.foldmethod = "indent"
 o.foldlevelstart = 20
 
 o.mouse = ""
+o.laststatus = 3
+
+o.exrc = true
+
+vim.opt.rtp:append(vim.fn.stdpath("config") .. "/lua")

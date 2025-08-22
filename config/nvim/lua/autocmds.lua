@@ -65,11 +65,6 @@ autocmd("Filetype", {
 	end,
 })
 
-autocmd("BufEnter", {
-	pattern = "term://*",
-	command = "set laststatus=0",
-})
-
 autocmd("BufWritePost", {
 	pattern = { "*Xresources", "*Xdefaults" },
 	command = "!xrdb %",

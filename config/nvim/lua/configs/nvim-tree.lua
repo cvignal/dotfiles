@@ -37,7 +37,7 @@ function M.setup()
 		git = {
 			enable = true,
 			ignore = false,
-			timeout = 1000,
+			timeout = 5000,
 		},
 		update_focused_file = {
 			enable = true,
