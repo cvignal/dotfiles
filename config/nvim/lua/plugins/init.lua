@@ -19,7 +19,12 @@ return {
 	},
 
 	"nvchad/volt", -- optional, needed for theme switcher
-	"neovim/nvim-lspconfig",
+	{
+		"neovim/nvim-lspconfig",
+		config = function()
+			require("configs.lspconfig")
+		end,
+	},
 	{
 		"mason-org/mason.nvim",
 	},
