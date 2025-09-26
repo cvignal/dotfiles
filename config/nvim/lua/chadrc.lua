@@ -4,7 +4,7 @@ local M = {}
 -- Path to overriding theme and highlights files
 --
 M.base46 = {
-	theme = "solarized_dark",
+	theme = "solarized_light",
 }
 
 M.ui = {

@@ -27,6 +27,7 @@ return {
 	},
 	{
 		"mason-org/mason.nvim",
+		lazy = false,
 	},
 
 	-- override plugin configs
@@ -182,16 +183,6 @@ return {
 		lazy = false,
 	},
 	{
-		"Exafunction/windsurf.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"hrsh7th/nvim-cmp",
-		},
-		config = function()
-			require("codeium").setup({})
-		end,
-	},
-	{
 		"kdheepak/lazygit.nvim",
 		cmd = {
 			"LazyGit",
@@ -209,5 +200,12 @@ return {
 		keys = {
 			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
 		},
+	},
+	{
+		"mfussenegger/nvim-jdtls",
+		config = function()
+			require("configs.jdtls")
+		end,
+		lazy = false,
 	},
 }

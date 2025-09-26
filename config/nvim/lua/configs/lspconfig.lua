@@ -23,8 +23,8 @@ local servers = {
 	"lua_ls",
 	"pylsp",
 	"tailwindcss",
-	"elixirls",
 	"expert",
 	"protols",
+	"jdtls",
 }
 vim.lsp.enable(servers)
