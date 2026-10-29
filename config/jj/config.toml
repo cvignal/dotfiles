@@ -1,0 +1,132 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+name = "Charles Vignal"
+email = "charles.vignal@gmail.com"
+
+[signing]
+behavior = "own"
+backend = "ssh"
+key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF8Ku403cMKUQ7fHuf0/kKH7V5lEe3Xb7h7SA0SrF8p/"
+
+[signing.backends.ssh]
+program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[ui]
+editor = "nvim"
+
+# disable pagination for `jj status`
+[[--scope]]
+--when.commands = ["status"]
+[--scope.ui]
+paginate = "never"
+
+# use `delta` for `jj diff` and `jj show`
+[[--scope]]
+--when.commands = ["diff", "show"]
+[--scope.ui]
+pager = "delta"
+
+
+[merge-tools.cursor]
+merge-args = ["--wait", "--merge", "$left", "$right", "$base", "$output"]
+conflict-marker-style = "git"
+merge-tool-edits-conflict-markers = true
+
+[merge-tools.diffconflicts]
+program = "nvim"
+merge-args = [
+    "-c", "let g:jj_diffconflicts_marker_length=$marker_length",
+    "-c", "JJDiffConflicts!", "$output", "$base", "$left", "$right",
+]
+merge-tool-edits-conflict-markers = true
+
+[git]
+sign-on-push = true
+# write-change-id-header = true
+executable-path = "/usr/bin/git"
+private-commits = "description(glob:'wip:*') | description(glob:'private:*')"
+
+[fsmonitor]
+backend = "watchman"
+
+[fsmonitor.watchman]
+register-snapshot-trigger = true
+
+[remotes.origin]
+push-new-bookmarks = true
+auto-track-bookmarks = "charles.vignal/*"
+
+[template-aliases]
+# Highlight unique prefix and show at least 12 characters (default)
+'format_short_id(id)' = 'id.shortest(12)'
+'format_jj_change_id(commit)' = '"JJ-Change-Id: " ++ commit.change_id().shortest(12) ++ ""'
+'first_line_suffix(description)' = """
+  description
+    .first_line()
+    .remove_prefix(jira_issue_prefix(description))
+    .lower()
+    .replace(regex:"[[:^word:]]", "-")
+    .replace(regex:"-+", "-")
+    .replace(regex:"^-|-$", "")
+"""
+'jira_issue_prefix(description)' = """
+  description
+    .match(regex:"^[[:upper:]]+-[[:digit:]]+[[:blank:]]+")
+    .replace(regex:"[[:blank:]]+", "")
+"""
+"format_operation(op)" = '''
+concat(
+  separate(" ",
+    format_short_operation_id(op.id()),
+    op.user(),
+    format_timestamp_millis(op.time().end()),
+  ), "
+",
+  op.description().first_line(), "
+",
+  surround("", "
+", op.tags()),
+)
+'''
+"format_timestamp_millis(timestamp)" = 'timestamp.local().format("%Y-%m-%d %H:%M:%S%.3f")'
+
+[aliases]
+# Find the closest ancestor with a bookmark pointing at it, and move it to the
+# parent of the working copy.
+tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@"]
+tug- = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+log-recent = ["log", "-r", "default() & recent()"]
+l = ["log", "-r", "(main..@):: | (main..@)-"]
+lpr = ["log", "-r", "pr_base()-..@"]
+
+[revset-aliases]
+"pr_head()" = "heads(trunk()..@ & tracked_remote_bookmarks())"
+"pr_base()" = "coalesce(heads(trunk()..pr_head()- & tracked_remote_bookmarks()), trunk())"
+# the default log revset defined internally:
+# 'default()' = 'present(@) | ancestors(immutable_heads().., 2) | present(trunk())'
+# or a nicer default:
+'default()' = 'coalesce(trunk(),root())::present(@) | ancestors(visible_heads() & recent(), 2)'
+'recent()' = 'committer_date(after:"1 month ago")'
+"active(rev)" = "(ancestors(rev) | descendants(rev)) ~ immutable()"
+'project' = 'bookmarks(regex:"^charles.vignal/.*")'
+
+[colors]
+"rest" = "default"
+# Highlight hunks with background
+"diff removed token" = { bg = "#221111", underline = false }
+"diff added token" = { bg = "#002200", underline = false }
+
+[templates]
+commit_trailers = '''
+if(!trailers.contains_key("JJ-Change-Id"), format_jj_change_id(self))'''
+git_push_bookmark = """
+  truncate_end(
+    244,
+    concat(
+      "charles.vignal/",
+      if(jira_issue_prefix(description),jira_issue_prefix(description)++"-"),
+      first_line_suffix(description),
+    ),
+  )
+"""

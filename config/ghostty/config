@@ -1,0 +1,51 @@
+font-family = "JetBrainsMonoNL Nerd Font Mono"
+font-size = 13
+
+# Outer window padding
+window-padding-x = 5
+window-padding-y = 5
+
+# Cursor
+cursor-style-blink = false
+
+# Mouse
+mouse-hide-while-typing = true
+
+# Scrollback
+scrollback-limit = 100000
+
+# Theme
+theme = "iTerm2 Solarized Light"
+
+# Alt for special chars on right option, left option stays for other shortcuts
+macos-option-as-alt = left
+
+# Dim inactive splits (kitty's inactive_text_alpha 0.5)
+unfocused-split-opacity = 0.5
+
+# Colored divider for focused split (kitty's active_border_color)
+split-divider-color = #268bd2
+
+# Splits open in same cwd by default in ghostty, no config needed
+
+# Keybindings
+# Resize splits (cmd+option+hjkl)
+keybind = cmd+opt+h=resize_split:left,20
+keybind = cmd+opt+l=resize_split:right,20
+keybind = cmd+opt+k=resize_split:up,20
+keybind = cmd+opt+j=resize_split:down,20
+# keybind = cmd+opt+equal=equalize_splits  # reset to equal
+
+# Zen mode: zoom focused split to fill the window (toggle with same shortcut)
+keybind = cmd+shift+enter=toggle_split_zoom
+
+# keybind = cmd+enter=new_split:right       # vertical split  (kitty cmd+enter)
+# keybind = cmd+shift+enter=new_split:down  # horizontal split
+# keybind = cmd+w=close_surface             # close split/tab
+# keybind = cmd+t=new_tab                   # new tab
+# keybind = cmd+shift+]=next_split          # next split
+# keybind = cmd+shift+[=previous_split      # prev split
+# keybind = cmd+]=next_tab                  # next tab
+# keybind = cmd+[=previous_tab              # prev tab
+#
+scrollback-limit = 30000000
