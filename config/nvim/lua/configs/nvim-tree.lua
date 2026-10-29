@@ -6,7 +6,7 @@ function M.grep_at_current_tree_node()
 	if not node then
 		return
 	end
-	require("telescope.builtin").live_grep({ search_dirs = { node.absolute_path } })
+	require("fzf-lua").live_grep({ search_paths = { node.absolute_path } })
 end
 
 local function custom_on_attach(bufnr)
@@ -46,6 +46,14 @@ function M.setup()
 		view = {
 			width = 40,
 			preserve_window_proportions = true,
+		},
+		filesystem_watchers = {
+			ignore_dirs = {
+				"/bazel-bin",
+				"/bazel-out",
+				"/bazel-test-logs",
+				"/target",
+			},
 		},
 		renderer = {
 			root_folder_label = false,

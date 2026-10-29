@@ -3,7 +3,12 @@ autoload -U zutil
 autoload -U +X bashcompinit && bashcompinit
 autoload compinit && {
     autoload -U complist
-    compinit -i -d $ZSH/run/u/$HOST-$UID/zcompdump
+    # Only regenerate compdump once per day
+    if [[ -n $ZSH/run/u/$HOST-$UID/zcompdump(#qN.mh+24) ]]; then
+        compinit -u -d $ZSH/run/u/$HOST-$UID/zcompdump
+    else
+        compinit -C -u -d $ZSH/run/u/$HOST-$UID/zcompdump
+    fi
 }
 
 setopt auto_menu
@@ -38,4 +43,24 @@ zstyle ':completion:*:*:git-pull:argument-1:' tag-order '!remote-repositories'
 zmodload -i zsh/complist
 bindkey -M menuselect "+" accept-and-menu-complete
 
-compdef _bazel bzl
+
+
+#compdef gt
+###-begin-gt-completions-###
+#
+# yargs command completion script
+#
+# Installation: gt completion >> ~/.zshrc
+#    or gt completion >> ~/.zprofile on OSX.
+#
+_gt_yargs_completions()
+{
+  local reply
+  local si=$IFS
+  IFS=$'
+' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" gt --get-yargs-completions "${words[@]}"))
+  IFS=$si
+  _describe 'values' reply
+}
+compdef _gt_yargs_completions gt
+###-end-gt-completions-###

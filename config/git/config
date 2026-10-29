@@ -9,6 +9,23 @@
 [alias]
   # List available aliases
     aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
+
+	review = "!f() { \
+              if [ $# -eq 0 ]; then \
+                  echo 'git review expects one argument (a branch name)'; \
+                  exit 1; \
+              else \
+                  if git show-ref --verify --quiet \"refs/heads/$1\"; then \
+                      git fetch origin \"$1\" && \
+                      git checkout \"$1\" && \
+                      git merge --ff-only \"origin/$1\"; \
+                  else \
+                      git fetch origin \"$1:$1\" && \
+                      git checkout \"$1\"; \
+                  fi; \
+              fi; \
+          }; f"
+
   # Command shortcuts
     ci = commit
     co = checkout
@@ -35,7 +52,9 @@
 [core]
     editor = nvim
     whitespace = -trailing-space
-    excludesfile = ~/.gitignore
+    excludesFile = ~/.config/git/ignore
+    untrackedCache = true
+	fsmonitor = false
 [diff]
   # Use better, descriptive initials (c, i, w) instead of a/b.
     mnemonicPrefix = true
@@ -46,6 +65,7 @@
   # Display submodule-related information (commit listings)
     submodule = log
     ignore-all-space = true
+	algorithm = histogram
 [fetch]
   # Auto-fetch submodule changes (sadly, won't auto-update)
     recurseSubmodules = on-demand
@@ -67,7 +87,6 @@
 [commit]
 	gpgsign = true
 [url "git@github.com:"]
-    insteadOf = https://github.com/
 [gpg]
     program = gpg
 [filter "lfs"]
@@ -79,3 +98,15 @@
     autoSetupRemote = true
 [init]
 	defaultBranch = main
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+	insteadOf = git://github.com/
+[index]
+	skipHash = false
+    threads = true
+[feature]
+    manyFiles = true
+[branch]
+	prefix = charles.vignal/
+[pack]
+	windowMemory = 4096m

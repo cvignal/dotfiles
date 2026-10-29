@@ -5,10 +5,25 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
-autoload -U add-zsh-hook
+# Cache brew prefix once (saves ~50ms per call)
+export HOMEBREW_PREFIX="${HOMEBREW_PREFIX:-/opt/homebrew}"
 
-fpath+=($ZDOTDIR/lib)
+# Load syntax highlighting (try homebrew path first, then Linux path)
+if [[ -f "$HOMEBREW_PREFIX/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" ]]; then
+  source "$HOMEBREW_PREFIX/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+elif [[ -f "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+  source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+elif [[ -f /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
+  source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+fi 2>/dev/null
+
+# Load autosuggestions
+if [[ -f "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
+  source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+fi
+
+autoload -U add-zsh-hook
 
 # Load aliases and shortcuts if existent.
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc"
@@ -28,14 +43,27 @@ else
   zstyle ':completion:*:default' list-colors ''
 fi
 
+# asdf version manager
 export ASDF_DATA_DIR="$HOME/.local/share/asdf"
 export PATH="$ASDF_DATA_DIR/shims:$PATH"
-export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
-export PATH="$PATH:/opt/homebrew/bin"
-export PATH="$PATH:$(go env GOPATH)/bin:$HOME/.cargo/bin/:/opt/homebrew/opt/openjdk/bin"
+
+# Add local bin directories (using glob instead of slow `du` command)
+export PATH="$PATH:$HOME/.local/bin"
+for dir in $HOME/.local/bin/*(N/); do
+  export PATH="$PATH:$dir"
+done
+
+export PATH="$PATH:$HOMEBREW_PREFIX/bin"
+export PATH="$PATH:$HOME/.cargo/bin:$HOMEBREW_PREFIX/opt/openjdk/bin"
+export PATH="$PATH:$HOME/.yarn/switch/bin"
+
+# Build paths using cached HOMEBREW_PREFIX
+export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH"
+export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
+export CPATH="$HOMEBREW_PREFIX/include:$CPATH"
+export LIBRARY_PATH="$HOMEBREW_PREFIX/lib:$LIBRARY_PATH"
 
 
-# BEGIN ANSIBLE MANAGED BLOCK
 # Load homebrew shell variables
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -46,16 +74,13 @@ export HOMEBREW_DIR=/opt/homebrew
 export HOMEBREW_BIN=/opt/homebrew/bin
 
 # Load python shims
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 
 # Load ruby shims
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 
 # Prefer GNU binaries to Macintosh binaries.
 export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
-
-
-
 
 # Point GOPATH to our go sources
 export GOPATH="$HOME/go"
@@ -63,34 +88,18 @@ export GOPATH="$HOME/go"
 # Add binaries that are go install-ed to PATH
 export PATH="$GOPATH/bin:$PATH"
 
-
-
-
-
-
-
-# store key in the login keychain instead of aws-vault managing a hidden keychain
-export AWS_VAULT_KEYCHAIN_NAME=login
-
-# tweak session times so you don't have to re-enter passwords every 5min
-export AWS_SESSION_TTL=24h
-export AWS_ASSUME_ROLE_TTL=1h
-
-# Helm switch from storing objects in kubernetes configmaps to
-# secrets by default, but we still use the old default.
-export HELM_DRIVER=configmap
-
 # Go 1.16+ sets GO111MODULE to off by default with the intention to
 # remove it in Go 1.18, which breaks projects using the dep tool.
 # https://blog.golang.org/go116-module-changes
 export GO111MODULE=auto
 
-
-
-
-# END ANSIBLE MANAGED BLOCK
-
-export GITLAB_TOKEN=$(security find-generic-password -a ${USER} -s gitlab_token -w)
+# Lazy-load GITLAB_TOKEN only when needed (avoids keychain access on every shell)
+gitlab_token() {
+  if [[ -z "$GITLAB_TOKEN" ]]; then
+    export GITLAB_TOKEN=$(security find-generic-password -a ${USER} -s gitlab_token -w 2>/dev/null)
+  fi
+  echo "$GITLAB_TOKEN"
+}
 eval "$(direnv hook zsh)"
 
 () {
@@ -98,9 +107,22 @@ eval "$(direnv hook zsh)"
     [ ! -e $ZDOTDIR/env ] || . $ZSH/env
 }
 
-source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
+source "$HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
+
+# Report cwd + command to terminal (used by zellij for pane/tab titles)
+_set_terminal_title_precmd() { print -Pn "\e]0;zsh@%1~\a"; }
+_set_terminal_title_preexec() { printf "\e]0;%s@%s\a" "${1%% *}" "${PWD##*/}"; }
+add-zsh-hook precmd _set_terminal_title_precmd
+add-zsh-hook preexec _set_terminal_title_preexec
 
 # add-zsh-hook precmd _vbe_setprompt
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+# Source local env if it exists
+[[ -f "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

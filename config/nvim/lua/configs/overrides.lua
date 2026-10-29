@@ -1,7 +1,7 @@
 local M = {}
 
 M.treesitter = {
-	ensure_installed = {
+	parsers = {
 		"vim",
 		"lua",
 		"html",
@@ -14,23 +14,8 @@ M.treesitter = {
 		"go",
 		"terraform",
 		"elixir",
+		"starlark",
 	},
-	indent = {
-		enable = true,
-		disable = {
-			"python",
-			"yaml",
-		},
-	},
-	highlight = {
-		enable = true,
-		use_languagetree = true,
-	},
-	incremental_selection = {
-		enable = true,
-		disable = { "yaml" },
-	},
-	additional_vim_regex_highlighting = false,
 }
 
 M.mason = {

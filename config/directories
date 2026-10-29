@@ -11,3 +11,4 @@ lb 	~/.local/bin
 src ~/.local/src
 mn	/mnt
 nvf	${XDG_CONFIG_HOME:-$HOME/.config}/nvim/lua
+pa ~/.pi/agent

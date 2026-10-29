@@ -6,10 +6,10 @@ export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | tr '\n' ':' | sed 's/:*$/
 
 # Defaults programs
 export EDITOR="nvim"
-export TERMINAL="st"
-export BROWSER="firefox"
-export READER="zathura"
-export FILE="ranger"
+# export TERMINAL="st"
+# export BROWSER="firefox"
+# export READER="zathura"
+# export FILE="ranger"
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -35,7 +35,6 @@ export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
 
 # Other program settings:
 export DICS="/usr/share/stardict/dic/"
-export SUDO_ASKPASS="$HOME/.local/bin/tools/askpass-rofi"
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export LESS=-R
 export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
@@ -116,11 +115,8 @@ ex=🎯:\
 [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ] && shortcuts >/dev/null 2>&1 &
 
 # Start graphical server on tty1 if not already running.
-[ "$(tty)" = "/dev/tty1" ] && ! ps -e | grep -qw Xorg && exec startx
+# [ "$(tty)" = "/dev/tty1" ] && ! ps -e | grep -qw Xorg && exec startx
 
 # Switch escape and caps if tty and no passwd required:
-sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null
-
-
-# Added by Toolbox App
-export PATH="$PATH:/home/charles/.local/share/JetBrains/Toolbox/scripts"
+# sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null
+[[ -f "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"

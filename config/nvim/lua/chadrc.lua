@@ -27,11 +27,11 @@ M.nvdash = {
 	},
 
 	buttons = {
-		{ txt = "  Find File", keys = "Spc f f", cmd = "Telescope find_files" },
-		{ txt = "󰈚  Recent Files", keys = "Spc f o", cmd = "Telescope oldfiles" },
-		{ txt = "󰈭  Find Word", keys = "Spc f w", cmd = "Telescope live_grep" },
-		{ txt = "  Bookmarks", keys = "Spc m a", cmd = "Telescope marks" },
-		{ txt = "  Themes", keys = "Spc t h", cmd = "Telescope themes" },
+		{ txt = "  Find File", keys = "Spc f f", cmd = "FzfLua files" },
+		{ txt = "󰈚  Recent Files", keys = "Spc f o", cmd = "FzfLua oldfiles" },
+		{ txt = "󰈭  Find Word", keys = "Spc f w", cmd = "FzfLua grep" },
+		{ txt = "  Bookmarks", keys = "Spc m a", cmd = "FzfLua marks" },
+		{ txt = "  Themes", keys = "Spc t h", cmd = "FzfLua colorschemes" },
 		{ txt = "  Mappings", keys = "Spc c h", cmd = "NvCheatsheet" },
 	},
 }

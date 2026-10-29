@@ -7,6 +7,13 @@ vim.diagnostic.config({
 	signs = { text = { [x.ERROR] = "󰅙", [x.WARN] = "", [x.INFO] = "󰋼", [x.HINT] = "󰌵" } },
 	float = { border = "single" },
 })
+vim.lsp.config("*", {
+	capabilities = {
+		workspace = {
+			didChangeWatchedFiles = { dynamicRegistration = false },
+		},
+	},
+})
 
 local servers = {
 	"html",

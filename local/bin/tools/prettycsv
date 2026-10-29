@@ -4,4 +4,4 @@
 
 SEPARATOR=${2:-";"}
 
-column -t $1 -s$SEPARATOR | less -F -S -X -K
+column -ts$SEPARATOR $1 | less -F -S -X -K

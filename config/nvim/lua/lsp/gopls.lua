@@ -15,9 +15,9 @@ return {
 		build = {
 			directoryFilters = {
 				"-**/bazel-bin",
-				
 				"-**/bazel-out",
 				"-**/bazel-testlogs",
+				"-**/target",
 			},
 		},
 		completeUnimported = true,

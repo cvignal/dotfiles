@@ -8,6 +8,24 @@ autocmd("TermOpen", {
 	command = "setlocal nonumber norelativenumber | setfiletype terminal",
 })
 
+-- Pi opens prompts in temporary markdown files via Ctrl+G; completion is noisy there
+-- and can trigger blink.cmp's fuzzy sorter while Neovim is starting.
+local function disable_pi_editor_completion(bufnr)
+	local name = vim.api.nvim_buf_get_name(bufnr)
+	if name:match("/pi%-editor%-%d+%.pi%.md$") or name:match("/pi%-extension%-editor%-%d+%.md$") then
+		vim.b[bufnr].completion = false
+	end
+end
+
+autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = "*",
+	callback = function(args)
+		disable_pi_editor_completion(args.buf)
+	end,
+})
+
+disable_pi_editor_completion(0)
+
 -- Open a file from its last left off position
 autocmd("BufReadPost", {
 	pattern = "*",

@@ -41,3 +41,34 @@ zle -N down-line-or-beginning-search
 bindkey "^P" up-line-or-beginning-search # Up
 bindkey "^N" down-line-or-beginning-search # Down
 
+# Edit command line in $EDITOR (press Ctrl+X Ctrl+E or v in normal mode)
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
+bindkey -M vicmd 'v' edit-command-line
+
+# Accept autosuggestion with Ctrl+Space
+bindkey '^ ' autosuggest-accept
+
+# Word navigation (Alt+Left/Right)
+bindkey '^[[1;3D' backward-word
+bindkey '^[[1;3C' forward-word
+
+# Delete word backward (Alt+Backspace)
+bindkey '^[^?' backward-kill-word
+
+# Home/End keys
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+bindkey '^[[1~' beginning-of-line
+bindkey '^[[4~' end-of-line
+
+# Ctrl+U to kill line backward (like bash)
+bindkey '^U' backward-kill-line
+
+# Ctrl+K to kill line forward
+bindkey '^K' kill-line
+
+# Ctrl+W to delete word backward
+bindkey '^W' backward-kill-word
+

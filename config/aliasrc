@@ -15,7 +15,8 @@ alias ka="killall" \
 	sdn="sudo shutdown -h now" \
 	gua="git remote | xargs -L1 git push --all" \
 	ls="gls -hN --color=auto --group-directories-first" \
-        ll="ls -l" \
+    ll="ls -l" \
+    la="ls -la" \
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
 	ccat="highlight --out-format=ansi" \
@@ -26,15 +27,14 @@ alias ka="killall" \
 	upc="sudo pacman -Syu; pkill -RTMIN+8 i3blocks" \
 	lsp="pacman -Qett --color=always | less" \
 	ffmpeg="ffmpeg -hide_banner" \
-    la="ls -la" \
     gcl="git clone" \
     wifiscan='nmcli device wifi list --rescan yes' \
     ssh='TERM=xterm-256color ssh' \
     pingc='ping -c 5' \
-    restart_cluster='k3d cluster delete && start_cluster' \
-    kube='kubectl' \
+    k='kubectl' \
     tf='terraform' \
-    vdb='v -c "DBUIToggle"'
+    vdb='v -c "DBUIToggle"' \
+    lg='lazygit'
 
 
 

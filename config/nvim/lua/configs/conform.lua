@@ -38,6 +38,9 @@ local options = {
 		end,
 	},
 	formatters = {
+		rustfmt = {
+			prepend_args = { "--edition", "2024" },
+		},
 		prettier = {
 			prepend_args = function()
 				return {
