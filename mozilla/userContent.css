@@ -1,0 +1,12 @@
+/* Firefox 159: the "Sidebery" panel header (title + close button) is rendered
+   inside the extension sidebar document (webext-panels.xhtml), which is hosted
+   in the sidebar <browser>. That document is not reliably reached by
+   userChrome.css (which only applies to chrome-docshell documents), so the
+   same rule is mirrored here, scoped to that document's URL. */
+
+@-moz-document url-prefix("chrome://browser/content/webext-panels.xhtml") {
+  #sidebar-panel-header,
+  *|sidebar-panel-header {
+    display: none !important;
+  }
+}

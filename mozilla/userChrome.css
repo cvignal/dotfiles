@@ -41,9 +41,11 @@
   display: none !important;
 }
 
-/* Extension sidebar header, old and revamped sidebar */
+/* Extension sidebar header, old and revamped sidebar. The bare type selector
+   variant is namespace-proof (the element is html:sidebar-panel-header) */
 #sidebar-header,
-#sidebar-panel-header {
+#sidebar-panel-header,
+*|sidebar-panel-header {
   display: none !important;
 }
 
